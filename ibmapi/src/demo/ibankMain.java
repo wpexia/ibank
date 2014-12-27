@@ -64,7 +64,7 @@ public class ibankMain extends iBankMenu
 			UserMenu userMenu = new UserMenu(this);
 			userMenu.Display();
 			userMenu.pack();
-			this.Hidden();
+			this.setVisible(false);
 		}
 		else if (menuItem.equals("3"))
 		{

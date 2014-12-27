@@ -15,6 +15,7 @@ public class ibankguidemo extends iBankLogon
 	protected KeyboardFocusManager manager;
 	protected KeyEventPostProcessor postProcessor;
 	protected KeyListener enterListener;
+	boolean listenerFlag = false;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() 
@@ -40,7 +41,8 @@ public class ibankguidemo extends iBankLogon
 		enterListener = new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				addEnter();
+				if(!listenerFlag)
+					addEnter();
 			}
 
 			@Override
@@ -61,22 +63,21 @@ public class ibankguidemo extends iBankLogon
 	{
 		String user  = username.getText();
 		char [] pass = password.getPassword();
+		manager.removeKeyEventPostProcessor(postProcessor);
+		listenerFlag = false;
 		
 		if (user.isEmpty())
 		{
-			manager.removeKeyEventPostProcessor(postProcessor);
 			JOptionPane.showMessageDialog(null, "请输入用户名", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 		
 		if (pass.length == 0)
 		{
-			manager.removeKeyEventPostProcessor(postProcessor);
 			JOptionPane.showMessageDialog(null, "请输入口令", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
-		manager.removeKeyEventPostProcessor(postProcessor);
 		dispose();
 		ibankapi.Init(user);
 		ibankMain ibankMain = new ibankMain();
@@ -91,6 +92,7 @@ public class ibankguidemo extends iBankLogon
 
 	protected void addEnter(){
 		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		listenerFlag = true;
 		manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor() {
 			@Override
 			public boolean postProcessKeyEvent(KeyEvent e) {

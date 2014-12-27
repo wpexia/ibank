@@ -1,12 +1,9 @@
 package demo;
 
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
-import ibankapi.ibankapi;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +17,7 @@ public class UserMenu extends iBankMenu{
 	private JLabel         lbQueryUser;
 	private JLabel         lbDeleteUser;
 	private JLabel         lbUpdateUser;
+    boolean listenerFlag =  false;
 	
 	protected JFrame parentFrame;
 
@@ -49,7 +47,8 @@ public class UserMenu extends iBankMenu{
         textInput.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
-                addEsc();
+                if(!listenerFlag)
+                    addEsc();
             }
 
             @Override
@@ -66,6 +65,7 @@ public class UserMenu extends iBankMenu{
 	
 	protected void OpenTransFrame(String menuItem){
         manager.removeKeyEventPostProcessor(postProcessor);
+        listenerFlag = false;
 		if(menuItem.isEmpty()){
 			JOptionPane.showMessageDialog(null, "请选择用户业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
@@ -87,7 +87,7 @@ public class UserMenu extends iBankMenu{
 			OpenTransWindow(updateUser);
 		}
 		else if(menuItem.equals("90")){
-			dispose();
+            returnMain();
 		}
 		
 	}
@@ -95,6 +95,7 @@ public class UserMenu extends iBankMenu{
 	protected void returnMain()
     {
         manager.removeKeyEventPostProcessor(postProcessor);
+        listenerFlag = false;
         dispose();
         setVisible(false);
         parentFrame.setVisible(true);
@@ -103,6 +104,7 @@ public class UserMenu extends iBankMenu{
 
     private void addEsc(){
         manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        listenerFlag = true;
         manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
                 {
                     @Override
