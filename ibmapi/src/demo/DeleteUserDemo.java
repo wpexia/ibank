@@ -16,42 +16,28 @@ import gui.iBankGui;
 public class DeleteUserDemo extends iBankGui{
 
 	private static final long serialVersionUID = 9063166698820167875L;
-	private JComboBox<String> comboIdType;
-	private JTextField textIdNumber;
 	private JTextField textCustomerId;
 	public DeleteUserDemo(JFrame parent) {
 		super(parent);
 
 		setTitle("iBank Delete User Demo");
-		JLabel lbIdType = CreateLable("证件类型");
-		JLabel lbIdNumber = CreateLable("证件号码");
-		
-		String[] idTypes = {"身份证", "军官证", "护照"};
-		comboIdType = new JComboBox<String>();
-		for (int i = 0; i < idTypes.length; ++i) {
-			comboIdType.addItem(idTypes[i]);
-		}
-		
-		textIdNumber = new JTextField();
-		textIdNumber.setColumns(15);
+		JLabel lbCustomerId = new JLabel("用户ID");
+		textCustomerId = new JTextField();
+		textCustomerId.setColumns(15);
+		AddInputComponent(lbCustomerId, 0, 0, 8, 1);
+		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
 		
 		lbTitle.setText("删除用户");
 		btnOK.setText("删除");
-		SetFont(textIdNumber);
-		
-		AddInputComponent(lbIdType, 0, 0, 8, 1);
-		AddInputComponent(comboIdType, 8, 0, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbIdNumber, 0, 1, 8, 1);
-		AddInputComponent(textIdNumber, 8, 1, GridBagConstraints.RELATIVE, 1);
-		
+		SetFont(textCustomerId);
 		AddInputComponent(btnOK, 0, 2, 8, 1);
 	}
 	
 	protected void TransactionAction() {
 		super.TransactionAction();
 
-		if (textIdNumber.getText().isEmpty()) {
-			JOptionPane.showMessageDialog(null, "请输入证件号", "错误", JOptionPane.ERROR_MESSAGE);
+		if (textCustomerId.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入用户ID", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
 
@@ -60,8 +46,7 @@ public class DeleteUserDemo extends iBankGui{
 
 		Transaction Trans = new Transaction("100098");
 
-		data.put("IDTYPE", "" + (char) ('A' + comboIdType.getSelectedIndex()));
-		data.put("IDNO", textIdNumber.getText());
+		data.put("CUSTID", textCustomerId.getText());
 
 		bRet = Trans.Init();
 
