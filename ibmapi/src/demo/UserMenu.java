@@ -1,8 +1,10 @@
 package demo;
 
-import java.awt.KeyEventPostProcessor;
-import java.awt.KeyboardFocusManager;
+import java.awt.*;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
 import ibankapi.ibankapi;
 
@@ -28,20 +30,7 @@ public class UserMenu extends iBankMenu{
 		super();
 		parentFrame = parent;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
-                {
-                    @Override
-                    public boolean postProcessKeyEvent(KeyEvent e)
-                    {
-                        if (KeyEvent.VK_ESCAPE == e.getKeyCode())
-                        {
-                            returnMain();
-                        }
-                        return true;
-                    }
-                }
-        );
+
 		
 		setTitle("User Menu");
 		
@@ -56,9 +45,27 @@ public class UserMenu extends iBankMenu{
 		AddMenuItem(lbUpdateUser);
 		
 		AddMenuItem(lbExit);
+
+        textInput.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+                addEsc();
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+
+            }
+        });
 	}
 	
 	protected void OpenTransFrame(String menuItem){
+        manager.removeKeyEventPostProcessor(postProcessor);
 		if(menuItem.isEmpty()){
 			JOptionPane.showMessageDialog(null, "请选择用户业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
@@ -84,7 +91,7 @@ public class UserMenu extends iBankMenu{
 		}
 		
 	}
-	
+
 	protected void returnMain()
     {
         manager.removeKeyEventPostProcessor(postProcessor);
@@ -92,28 +99,22 @@ public class UserMenu extends iBankMenu{
         setVisible(false);
         parentFrame.setVisible(true);
     }
+
+
+    private void addEsc(){
+        manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+        manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
+                {
+                    @Override
+                     public boolean postProcessKeyEvent(KeyEvent e)
+                    {
+                        if (KeyEvent.VK_ESCAPE == e.getKeyCode())
+                        {
+                            returnMain();
+                        }
+                        return true;
+                    }
+                }
+        );
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
