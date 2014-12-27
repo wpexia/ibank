@@ -30,6 +30,7 @@ public class ibankMain extends iBankMenu
 		lbAU                = CreateLable(" 4. 添加用户");
 		lbQuery             = CreateLable(" 7. 查询用户"); 
 		
+
 		AddMenuItem(lbDataSync);
 		//AddMenuItem(lbAccountTransfer);
 		AddMenuItem(lbUser);
