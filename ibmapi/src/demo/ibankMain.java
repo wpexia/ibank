@@ -13,24 +13,30 @@ public class ibankMain extends iBankMenu
 	private JLabel         lbAccountTransfer;  
 	private JLabel         lbDataSync;
 	private JLabel         lbMQ;
+	private JLabel         lbAU;
+	private JLabel         lbQuery;
 	private JLabel         lbUser;
-
-
+	
+	
 	public ibankMain()
 	{
 		super();
 		setTitle("iBank Demo");
 	
 		lbDataSync          = CreateLable(" 1. 数据同步");
-		lbAccountTransfer   = CreateLable(" 2. 转账");
+		//lbAccountTransfer   = CreateLable(" 2. 转账");
+		lbUser              = CreateLable(" 2. 用户操作");
 		lbMQ                = CreateLable(" 3. IBANK多记录查询示例");
-		lbUser              = CreateLable(" 4. 用户管理");
-
+		lbAU                = CreateLable(" 4. 添加用户");
+		lbQuery             = CreateLable(" 7. 查询用户"); 
+		
 		AddMenuItem(lbDataSync);
-		AddMenuItem(lbAccountTransfer);
-		AddMenuItem(lbMQ);
+		//AddMenuItem(lbAccountTransfer);
 		AddMenuItem(lbUser);
-
+		AddMenuItem(lbMQ);
+		AddMenuItem(lbAU);
+		AddMenuItem(lbQuery);
+		
 		
 		AddMenuItem(lbExit);
 		
@@ -48,23 +54,31 @@ public class ibankMain extends iBankMenu
 			DataSyncDemo dataSync = new DataSyncDemo(this);
 			OpenTransWindow(dataSync);
 		}
-		else if (menuItem.equals("2"))
-		{
-			AccountTransfer accountTrans = new AccountTransfer(this);
-			OpenTransWindow(accountTrans);
+//		else if (menuItem.equals("2"))
+//		{
+//			AccountTransfer accountTrans = new AccountTransfer(this);
+//			OpenTransWindow(accountTrans);
+//		}
+		else if(menuItem.equals("2")){
+			UserMenu userMenu = new UserMenu(this);
+			userMenu.Display();
+			userMenu.pack();
+			this.Hidden();
 		}
 		else if (menuItem.equals("3"))
 		{
 			MQDemo mqdemo = new MQDemo(this, "900000", 10);
 			OpenTransWindow(mqdemo);
 		}
-		else if(menuItem.equals("4"))
-		{
-			UserMenu userMenu = new UserMenu(this);
-			userMenu.Display();
-			userMenu.pack();
-			this.Hidden();
+		else if ( menuItem.equals("4")){
+			AddUserDemo addUserDemo = new AddUserDemo(this);
+			OpenTransWindow(addUserDemo);
 		}
+		else if ( menuItem.equals("7")){
+			QueryDemo queryDemo = new QueryDemo(this);
+			OpenTransWindow(queryDemo);
+		}
+
 		else if (menuItem.equals("90"))
 		{
 			ibankapi.Release();
