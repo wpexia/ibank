@@ -28,7 +28,7 @@ public class ibankMain extends iBankMenu
 		lbUser              = CreateLable(" 2. 用户操作");
 		lbMQ                = CreateLable(" 3. IBANK多记录查询示例");
 		lbAU                = CreateLable(" 4. 添加用户");
-		lbQuery             = CreateLable(" 7.   查询用户"); 
+		lbQuery             = CreateLable(" 7. 查询用户"); 
 		
 
 		AddMenuItem(lbDataSync);
