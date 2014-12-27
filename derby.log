@@ -1,0 +1,14 @@
+Sat Dec 27 13:46:25 CST 2014 : Apache Derby 网络服务器 - 10.10.1.1 - (1458268) 已启动并准备接受端口 1527 上的连接
+----------------------------------------------------------------
+Sat Dec 27 13:46:32 CST 2014:
+正在使用类加载程序 sun.misc.Launcher$AppClassLoader@4bea71d4 引导数据库
+目录 C:\work\work\ibmtest\ibankdb 中的 Derby 版本 The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268) 实例 a816c00e-014a-8a48-0cae-000006c67a50
+已从 file:/C:/work/work/ibmtest/derby/lib/derby.jar 加载
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_71-b14
+user.dir=C:\work\work\ibmtest
+os.name=Windows 8.1
+os.arch=amd64
+os.version=6.3
+derby.system.home=null
+数据库类加载程序已启动 - derby.database.classpath=''

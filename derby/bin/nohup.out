@@ -1,0 +1,22 @@
+Sat Apr 19 15:08:50 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) started and ready to accept connections on port 1527
+Sat Apr 19 15:09:09 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) started and ready to accept connections on port 1527
+Sat Apr 19 15:11:03 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) shutdown
+Sat Apr 19 15:11:54 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) started and ready to accept connections on port 1527
+Tue Apr 22 19:36:26 CST 2014 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 0; Error Code Value = 3. Plaintext connection attempt from an SSL enabled client?
+org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 0; Error Code Value = 3. Plaintext connection attempt from an SSL enabled client?
+	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
+	at org.apache.derby.impl.drda.DDMReader.readDssHeader(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.exchangeServerAttributes(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.sessionInitialState(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Tue Apr 22 19:36:26 CST 2014 : Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 0; Error Code Value = 3. Plaintext connection attempt from an SSL enabled client?
+org.apache.derby.impl.drda.DRDAProtocolException: Execution failed because of a Distributed Protocol Error:  DRDA_Proto_SYNTAXRM; CODPNT arg  = 0; Error Code Value = 3. Plaintext connection attempt from an SSL enabled client?
+	at org.apache.derby.impl.drda.DRDAConnThread.throwSyntaxrm(Unknown Source)
+	at org.apache.derby.impl.drda.DDMReader.readDssHeader(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.exchangeServerAttributes(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.sessionInitialState(Unknown Source)
+	at org.apache.derby.impl.drda.DRDAConnThread.run(Unknown Source)
+Mon Apr 28 16:40:10 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) shutdown
+Mon May 05 17:47:10 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) started and ready to accept connections on port 1527
+Tue May 06 10:29:12 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) started and ready to accept connections on port 1527
+Tue May 06 10:36:47 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) shutdown

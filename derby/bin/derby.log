@@ -1,0 +1,20 @@
+Tue May 06 10:29:12 CST 2014 : Apache Derby Network Server - 10.10.1.1 - (1458268) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Tue May 06 10:30:05 CST 2014:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.10.1.1 - (1458268): instance a816c00e-0145-cf5d-08bc-00000691f6c8 
+on database directory /data/eclipse_workspace/ibankapi/ibankdb with class loader sun.misc.Launcher$AppClassLoader@4b6e3f87 
+Loaded from file:/data/software/derby/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_55-mockbuild_2014_04_16_06_38-b00
+user.dir=/data/eclipse_workspace/ibankapi/derby/bin
+os.name=Linux
+os.arch=amd64
+os.version=3.13.10-200.fc20.x86_64
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue May 06 10:36:45 CST 2014: Shutting down Derby engine
+----------------------------------------------------------------
+Tue May 06 10:36:46 CST 2014:
+Shutting down instance a816c00e-0145-cf5d-08bc-00000691f6c8 on database directory /data/eclipse_workspace/ibankapi/ibankdb with class loader sun.misc.Launcher$AppClassLoader@4b6e3f87 
+----------------------------------------------------------------

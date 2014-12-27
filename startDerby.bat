@@ -1,0 +1,1 @@
+derby\bin\startNetworkServer -noSecurityManager 
