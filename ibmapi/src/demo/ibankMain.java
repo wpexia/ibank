@@ -16,6 +16,7 @@ public class ibankMain extends iBankMenu
 	private JLabel         lbAU;
 	private JLabel         lbQuery;
 	private JLabel         lbUser;
+	private JLabel         lbOperator;
 	
 	
 	public ibankMain()
@@ -28,7 +29,8 @@ public class ibankMain extends iBankMenu
 		lbUser              = CreateLable(" 2. 用户操作");
 		lbMQ                = CreateLable(" 3. IBANK多记录查询示例");
 		lbAU                = CreateLable(" 4. 添加用户");
-		lbQuery             = CreateLable(" 7. 查询用户"); 
+		lbQuery             = CreateLable(" 7. 查询用户");
+		lbOperator          = CreateLable(" 5. 操作员操作");
 		
 
 		AddMenuItem(lbDataSync);
@@ -37,6 +39,7 @@ public class ibankMain extends iBankMenu
 		AddMenuItem(lbMQ);
 		AddMenuItem(lbAU);
 		AddMenuItem(lbQuery);
+		AddMenuItem(lbOperator);
 		
 		
 		AddMenuItem(lbExit);
@@ -74,6 +77,9 @@ public class ibankMain extends iBankMenu
 		else if ( menuItem.equals("4")){
 			AddUserDemo addUserDemo = new AddUserDemo(this);
 			OpenTransWindow(addUserDemo);
+		}
+		else if( menuItem.equals("5")){
+
 		}
 		else if ( menuItem.equals("7")){
 			QueryDemo queryDemo = new QueryDemo(this);
