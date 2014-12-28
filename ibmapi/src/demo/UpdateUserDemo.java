@@ -71,7 +71,8 @@ public class UpdateUserDemo extends iBankGui{
 
 		AddInputComponent(lbIdType, 0, 1, 8, 1);
 		AddInputComponent(comboIdType, 8, 1, GridBagConstraints.RELATIVE, 1);
-		comboIdType.setSelectedIndex(Integer.parseInt(mData.get("IDTYPE")));
+		System.out.println("IDTYPE:   " + mData.get("IDTYPE"));
+		comboIdType.setSelectedIndex(mData.get("IDTYPE").charAt(0)-'A');
 		AddInputComponent(lbIdNumber, 0, 2, 8, 1);
 		AddInputComponent(textIdNumber, 8, 2, GridBagConstraints.RELATIVE, 1);
 		textIdNumber.setText(mData.get("IDNO"));

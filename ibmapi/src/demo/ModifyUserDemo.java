@@ -28,7 +28,7 @@ public class ModifyUserDemo extends iBankMenu{
     protected KeyEventPostProcessor postProcessor;
     
     public ModifyUserDemo(JFrame parent, HashMap<String, String>data){
-    	super();
+    	super(parent);
     	parentFrame = parent;
     	mData = data;
     	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -61,8 +61,9 @@ public class ModifyUserDemo extends iBankMenu{
     }
     
     protected void OpenTransFrame(String menuItem){
-        manager.removeKeyEventPostProcessor(postProcessor);
-        listenerFlag = false;
+    	super.OpenTransFrame(menuItem);
+//        manager.removeKeyEventPostProcessor(postProcessor);
+//        listenerFlag = false;
 		if(menuItem.isEmpty()){
 			JOptionPane.showMessageDialog(null, "请选择用户编辑业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
 			return;

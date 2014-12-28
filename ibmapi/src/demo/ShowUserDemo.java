@@ -23,6 +23,7 @@ public class ShowUserDemo extends iBankGui{
 
 	public ShowUserDemo(JFrame parent, HashMap<String, String>data) {
 		super(parent);
+		mData = data;
 
 		setTitle("iBank Show User Demo");
 		
@@ -96,6 +97,7 @@ public class ShowUserDemo extends iBankGui{
 	protected void TransactionAction(){
 		super.TransactionAction();
 		ModifyUserDemo modifyUser = new ModifyUserDemo(this, mData);
+		OpenTransWindow(modifyUser);
 		
 	}
 

@@ -31,7 +31,8 @@ public final class DataSyncDemo extends iBankGui
 		cbTableList = new JComboBox<String>();
 		for (int i = 0; i < tableNames.length; ++i)
 			cbTableList.addItem(tableNames[i]);
-		
+		cbTableList.addKeyListener(keyListener);
+
 		JLabel lbTable   = CreateLable("同步表名：");
 		
 		lbTitle.setText("数据同步");
