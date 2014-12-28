@@ -17,7 +17,7 @@ public class DeleteUserDemo extends iBankGui{
 
 	private static final long serialVersionUID = 9063166698820167875L;
 	private JTextField textCustomerId;
-	public DeleteUserDemo(JFrame parent) {
+	public DeleteUserDemo(JFrame parent, HashMap<String, String> mData) {
 		super(parent);
 
 		setTitle("iBank Delete User Demo");
@@ -26,7 +26,7 @@ public class DeleteUserDemo extends iBankGui{
 		textCustomerId.setColumns(15);
 		AddInputComponent(lbCustomerId, 0, 0, 8, 1);
 		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
-		
+		textCustomerId.setText(mData.get("CUSTID"));
 		lbTitle.setText("删除用户");
 		btnOK.setText("删除");
 		SetFont(textCustomerId);

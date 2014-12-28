@@ -11,8 +11,11 @@ public class UserMenu extends iBankMenu{
 	private static final long serialVersionUID = 1L;
 	private JLabel         lbAddUser;
 	private JLabel         lbQueryUser;
-	private JLabel         lbDeleteUser;
-	private JLabel         lbUpdateUser;
+
+//	private JLabel         lbDeleteUser;
+//	private JLabel         lbUpdateUser;
+    boolean listenerFlag =  false;
+	
 
 	protected JFrame parentFrame;
 
@@ -27,14 +30,14 @@ public class UserMenu extends iBankMenu{
 
 		lbAddUser          = CreateLable(" 1. 添加用户");
 		lbQueryUser        = CreateLable(" 2. 查询用户");
-		lbDeleteUser       = CreateLable(" 3. 删除用户");
-		lbUpdateUser       = CreateLable(" 4. 修改用户");
-
+//		lbDeleteUser       = CreateLable(" 3. 删除用户");
+//		lbUpdateUser       = CreateLable(" 4. 修改用户");
+		
 		AddMenuItem(lbAddUser);
 		AddMenuItem(lbQueryUser);
-		AddMenuItem(lbDeleteUser);
-		AddMenuItem(lbUpdateUser);
-
+//		AddMenuItem(lbDeleteUser);
+//		AddMenuItem(lbUpdateUser);
+		
 		AddMenuItem(lbExit);
 
 	}
@@ -54,14 +57,14 @@ public class UserMenu extends iBankMenu{
 			QueryDemo queryUser = new QueryDemo(this);
 			OpenTransWindow(queryUser);
 		}
-		else if(menuItem.equals("3")){
-			DeleteUserDemo deleteUser = new DeleteUserDemo(this);
-			OpenTransWindow(deleteUser);
-		}
-		else if(menuItem.equals("4")){
-			UpdateUserDemo updateUser = new UpdateUserDemo(this);
-			OpenTransWindow(updateUser);
-		}
+//		else if(menuItem.equals("3")){
+//			DeleteUserDemo deleteUser = new DeleteUserDemo(this);
+//			OpenTransWindow(deleteUser);
+//		}
+//		else if(menuItem.equals("4")){
+//			UpdateUserDemo updateUser = new UpdateUserDemo(this);
+//			OpenTransWindow(updateUser);
+//		}
 		else if(menuItem.equals("90")){
             returnMain();
 		}

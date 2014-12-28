@@ -196,6 +196,7 @@ public class iBankGui extends JFrame
 		dispose();
 		setVisible(false);
 		parentFrame.setVisible(true);
+		parentFrame.pack();
 	}
 
 	protected void myAddKeylistener()
@@ -259,6 +260,20 @@ public class iBankGui extends JFrame
 	private void AddStatusComponent(Component c, int x, int y, int w, int h)
 	{
 		AddComponent(statusPane, c, gbcStatus, x, y, w, h);
+	}
+	
+	protected void OpenTransWindow(iBankGui transFrame)
+	{
+		transFrame.Display();
+		transFrame.pack();
+		setVisible(false);
+	}
+	
+	protected void OpenTransWindow(iBankMenu transFrame)
+	{
+		transFrame.Display();
+		transFrame.pack();
+		setVisible(false);
 	}
 	
 	protected void SetConstraintsToDefault(GridBagConstraints constraints)
