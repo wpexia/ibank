@@ -12,12 +12,10 @@ public class OperatorMenu extends iBankMenu
 	private JLabel lbAddOperator;
 	private JLabel lbSearchOperator;
 
-	protected JFrame parentFrame;
-
 
 	public OperatorMenu(JFrame parent)
 	{
-		super();
+		super(parent);
 		parentFrame = parent;
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -36,10 +34,23 @@ public class OperatorMenu extends iBankMenu
 
 	protected void OpenTransFrame(String menuItem)
 	{
+		super.OpenTransFrame(menuItem);
 		if(menuItem.isEmpty()){
 			JOptionPane.showMessageDialog(null, "请选择操作员业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
+		else if (menuItem.equals("1"))
+		{
+
+		}
+		else if (menuItem.equals("2"))
+		{
+
+		}
+		else if (menuItem.equals("90"))
+		{
+			returnMain();
+		}
 	}
+
 }
