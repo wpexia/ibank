@@ -61,7 +61,10 @@ public final class QueryDemo extends iBankGui {
 			ShowStatusMessage(Trans.GetStatusMsg());
 			return;
 		}
+		ShowStatusMessage(Trans.GetStatusMsg());
 
+		if(!Trans.GetStatus())
+			return;
 
 		data.put("IDTYPE", Trans.GetResponseValue("IDTYPE"));
 		data.put("IDNO", Trans.GetResponseValue("IDNO"));
@@ -74,7 +77,7 @@ public final class QueryDemo extends iBankGui {
 		ShowUserDemo showUser = new ShowUserDemo(this, data);
 		OpenTransWindow(showUser);
 
-		ShowStatusMessage(Trans.GetStatusMsg());
+
 
 		Trans.Release();
 	}
