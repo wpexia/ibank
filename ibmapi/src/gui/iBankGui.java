@@ -3,6 +3,7 @@ package gui;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
@@ -23,7 +24,7 @@ public class iBankGui extends JFrame
 	protected JPanel		  headPane;
 	protected JPanel		  InOutPane;
 
-	
+
 	protected BorderLayout       blContent;
 	
 	protected GridBagLayout      gblInput;
@@ -223,7 +224,12 @@ public class iBankGui extends JFrame
 
 	protected void TransactionAction()
 	{
-		return;			
+		if(listenFlag)
+		{
+			manager.removeKeyEventPostProcessor(postProcessor);
+			listenFlag = false;
+		}
+		return;
 	}
 	
 	protected void ShowStatusMessage(String [] Msg)
