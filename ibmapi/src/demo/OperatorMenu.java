@@ -40,9 +40,6 @@ public class OperatorMenu extends iBankMenu
 			JOptionPane.showMessageDialog(null, "请选择操作员业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		else if()
-		{
-			
-		}
+		
 	}
 }
