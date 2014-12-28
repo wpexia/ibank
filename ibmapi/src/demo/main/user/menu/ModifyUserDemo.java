@@ -22,12 +22,10 @@ public class ModifyUserDemo extends iBankMenu{
 	private static final long serialVersionUID = 1L;
 	private JLabel         lbDeleteUser;
 	private JLabel         lbUpdateUser;
-	boolean listenerFlag =  false;
-	protected JFrame parentFrame;
+
+    protected JFrame parentFrame;
 	private HashMap<String, String> mData ;
 
-    protected KeyboardFocusManager manager;
-    protected KeyEventPostProcessor postProcessor;
     
     public ModifyUserDemo(JFrame parent, HashMap<String, String>data){
     	super(parent);
@@ -43,23 +41,6 @@ public class ModifyUserDemo extends iBankMenu{
 		AddMenuItem(lbDeleteUser);
 		AddMenuItem(lbUpdateUser);
 		AddMenuItem(lbExit);
-		textInput.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                if(!listenerFlag)
-                    addEsc();
-            }
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
-        });
     }
     
     protected void OpenTransFrame(String menuItem){
@@ -83,34 +64,6 @@ public class ModifyUserDemo extends iBankMenu{
 		}
 		
 	}
-
-	protected void returnMain()
-    {
-        manager.removeKeyEventPostProcessor(postProcessor);
-        listenerFlag = false;
-        dispose();
-        setVisible(false);
-        parentFrame.setVisible(true);
-    }
-
-
-    private void addEsc(){
-        manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-        listenerFlag = true;
-        manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
-                {
-                    @Override
-                     public boolean postProcessKeyEvent(KeyEvent e)
-                    {
-                        if (KeyEvent.VK_ESCAPE == e.getKeyCode())
-                        {
-                            returnMain();
-                        }
-                        return true;
-                    }
-                }
-        );
-    }
 
 }
 

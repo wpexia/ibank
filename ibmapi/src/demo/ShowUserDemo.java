@@ -39,22 +39,28 @@ public class ShowUserDemo extends iBankGui{
 
 		textIdType = new JTextField();
 		textIdType.setColumns(20);
+		textIdType.setEditable(false);
 		
 
 		textIdNumber = new JTextField();
 		textIdNumber.setColumns(20);
+		textIdNumber.setEditable(false);
 		
 		textGender = new JTextField();
 		textGender.setColumns(15);
+		textGender.setEditable(false);
 
 		textAge = new JTextField();
 		textAge.setColumns(15);
+		textAge.setEditable(false);
 
 		textName1 = new JTextField();
 		textName1.setColumns(15);
+		textName1.setEditable(false);
 
 		textName2 = new JTextField();
 		textName2.setColumns(15);
+		textName2.setEditable(false);
 
 		lbTitle.setText("编辑用户");
 		btnOK.setText("操作");
@@ -68,6 +74,8 @@ public class ShowUserDemo extends iBankGui{
 		
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
+		textCustomerId.setEditable(false);
+		textCustomerId.addKeyListener(keyListener);
 
 		AddInputComponent(lbCustomerID, 0, 0, 8, 1);
 		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
@@ -79,8 +87,6 @@ public class ShowUserDemo extends iBankGui{
 		AddInputComponent(lbIdNumber, 0, 2, 8, 1);
 		AddInputComponent(textIdNumber, 8, 2, GridBagConstraints.RELATIVE, 1);
 		textIdNumber.setText(data.get("IDNO"));
-		System.out.println("IDNO:  " + data.get("IDNO"));
-		System.out.println(textIdNumber.getText());
 		AddInputComponent(lbGender, 0, 3, 8, 1);
 		AddInputComponent(textGender, 8, 3, GridBagConstraints.RELATIVE, 1);
 		textGender.setText(data.get("GENDER"));
@@ -97,7 +103,8 @@ public class ShowUserDemo extends iBankGui{
 	
 	protected void TransactionAction(){
 		super.TransactionAction();
-		ModifyUserDemo modifyUser = new ModifyUserDemo(this, mData);
+
+		ModifyUserDemo modifyUser = new ModifyUserDemo(parentFrame, mData);
 		OpenTransWindow(modifyUser);
 		
 	}
