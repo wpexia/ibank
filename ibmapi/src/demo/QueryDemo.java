@@ -98,34 +98,11 @@ public final class QueryDemo extends iBankGui {
 			JOptionPane.showMessageDialog(null, "请输入用户ID", "错误", JOptionPane.ERROR_MESSAGE);
 		}
 
-//		if (textIdNumber.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "请输入证件号", "错误", JOptionPane.ERROR_MESSAGE);
-//			return;
-//		}
-//
-//
-//		if (textAge.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "请输入年龄", "错误", JOptionPane.ERROR_MESSAGE);
-//			return;
-//		}
-//
-//
-//		if (textName1.getText().isEmpty()) {
-//			JOptionPane.showMessageDialog(null, "请输入姓名", "错误", JOptionPane.ERROR_MESSAGE);
-//			return;
-//		}
-
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
 
 		Transaction Trans = new Transaction("100096");
-//
-//		data.put("IDTYPE", "" + (char) ('A' + comboIdType.getSelectedIndex()));
-//		data.put("IDNO", textIdNumber.getText());
-//		data.put("GENDER", Integer.toString(comboGender.getSelectedIndex()));
-//		data.put("AGE", textAge.getText());
-//		data.put("NAME1", textName1.getText());
-//		data.put("NAME2", textName2.getText());
+
 		data.put("CUSTID", textCustomerId.getText());
 
 		bRet = Trans.Init();
@@ -146,21 +123,30 @@ public final class QueryDemo extends iBankGui {
 		
 		String IDType = Trans.GetResponseValue("IDTYPE");
 		textIdType.setText(IDType);
+		data.put("IDTYPE", IDType);
 		
 		String IDNumber = Trans.GetResponseValue("IDNO");
 		textIdNumber.setText(IDNumber);
+		data.put("IDNO", IDNumber);
 		
 		String gender = Trans.GetResponseValue("GENDER");
 		textGender.setText(gender);
+		data.put("GENDER", gender);
 		
 		String age = Trans.GetResponseValue("AGE");
 		textAge.setText(age);
+		data.put("AGE", age);
 		
 		String name1 = Trans.GetResponseValue("NAME1");
 		textName1.setText(name1);
+		data.put("NAME1", name1);
 		
 		String name2 = Trans.GetResponseValue("NAME2");
 		textName2.setText(name2);
+		data.put("NAME2", name2);
+		
+		ShowUserDemo showUser = new ShowUserDemo(this, data);
+		OpenTransWindow(showUser);
 		
 //		String customerID = Trans.GetResponseValue("CUSTID");
 //		textCustomerId.setText(customerID);

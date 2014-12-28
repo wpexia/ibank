@@ -219,6 +219,13 @@ public class iBankGui extends JFrame
 		AddComponent(statusPane, c, gbcStatus, x, y, w, h);
 	}
 	
+	protected void OpenTransWindow(iBankGui transFrame)
+	{
+		transFrame.Display();
+		transFrame.pack();
+		setVisible(false);
+	}
+	
 	protected void SetConstraintsToDefault(GridBagConstraints constraints)
 	{
 		
