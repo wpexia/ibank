@@ -45,6 +45,8 @@ public class iBankGui extends JFrame
 	
 	protected KeyboardFocusManager manager;
 	protected KeyEventPostProcessor postProcessor;
+	public KeyListener keyListener;
+	protected boolean listenFlag = false;
 	
 	public iBankGui(JFrame parent)
 	{
@@ -146,29 +148,36 @@ public class iBankGui extends JFrame
 			}
 		}
 		);
-		
-		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-		manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor() 
+
+		keyListener = new KeyListener()
 		{
 			@Override
-			public boolean postProcessKeyEvent(KeyEvent e) 
+			public void keyTyped(KeyEvent e)
 			{
-				if (KeyEvent.VK_ESCAPE == e.getKeyCode()) 
-				{
-					returnMain();
-				}
-				return true;
+				if(!listenFlag)
+					myAddKeylistener();
 			}
-		}
-		);
-		
-		addWindowListener(new WindowAdapter() 
+
+			@Override
+			public void keyPressed(KeyEvent e)
+			{
+
+			}
+
+			@Override
+			public void keyReleased(KeyEvent e)
+			{
+
+			}
+		};
+
+		addWindowListener(new WindowAdapter()
 		{
-		    public void windowClosing(WindowEvent e)
-		    {
-		    	returnMain();
-		    }
-		  });
+			public void windowClosing(WindowEvent e)
+			{
+				returnMain();
+			}
+		});
 	}
 	public void Display()
 	{
@@ -178,12 +187,39 @@ public class iBankGui extends JFrame
 	
 	protected void returnMain()
 	{
-		manager.removeKeyEventPostProcessor(postProcessor);
+		if(listenFlag)
+		{
+			manager.removeKeyEventPostProcessor(postProcessor);
+			listenFlag = false;
+		}
 		dispose();
 		setVisible(false);
 		parentFrame.setVisible(true);
 	}
-	
+
+	protected void myAddKeylistener()
+	{
+		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
+		listenFlag = true;
+		manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
+				{
+					@Override
+					public boolean postProcessKeyEvent(KeyEvent e)
+					{
+						if (KeyEvent.VK_ESCAPE == e.getKeyCode())
+						{
+							returnMain();
+						}
+						else if(KeyEvent.VK_ENTER == e.getKeyCode())
+						{
+							TransactionAction();
+						}
+						return true;
+					}
+				}
+		);
+	}
+
 	protected void TransactionAction()
 	{
 		return;			
