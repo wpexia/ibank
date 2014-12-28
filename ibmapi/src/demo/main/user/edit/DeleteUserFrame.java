@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user.edit;
 
 import ibankapi.Transaction;
 
@@ -13,11 +13,11 @@ import javax.swing.JTextField;
 
 import gui.iBankGui;
 
-public class DeleteUserDemo extends iBankGui{
+public class DeleteUserFrame extends iBankGui{
 
 	private static final long serialVersionUID = 9063166698820167875L;
 	private JTextField textCustomerId;
-	public DeleteUserDemo(JFrame parent, HashMap<String, String> mData) {
+	public DeleteUserFrame(JFrame parent, HashMap<String, String> mData) {
 		super(parent);
 
 		setTitle("iBank Delete User Demo");

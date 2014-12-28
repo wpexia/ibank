@@ -1,12 +1,18 @@
-package demo;
+package demo.main;
 
 import gui.iBankMenu;
 
 import javax.swing.*;
 
+import demo.OperatorMenu;
+import demo.main.account.AccountMenu;
+import demo.main.dataSync.DataSyncFrame;
+import demo.main.user.AddUserFrame;
+import demo.main.user.QueryUserFrame;
+import demo.main.user.UserMenu;
 import ibankapi.ibankapi;
 
-public class ibankMain extends iBankMenu
+public class ibankMainMenu extends iBankMenu
 {
 	
 	private static final long serialVersionUID = 1L;
@@ -19,7 +25,7 @@ public class ibankMain extends iBankMenu
 	private JLabel         lbOperator;
 	
 	
-	public ibankMain()
+	public ibankMainMenu()
 	{
 		super(null);
 		setTitle("iBank Demo");
@@ -27,7 +33,7 @@ public class ibankMain extends iBankMenu
 		lbDataSync          = CreateLable(" 1. 数据同步");
 		//lbAccountTransfer   = CreateLable(" 2. 转账");
 		lbUser              = CreateLable(" 2. 用户操作");
-		lbMQ                = CreateLable(" 3. IBANK多记录查询示例");
+		lbMQ                = CreateLable(" 3. 账户操作");
 		lbAU                = CreateLable(" 4. 添加用户");
 		lbQuery             = CreateLable(" 7. 查询用户");
 		lbOperator          = CreateLable(" 5. 操作员操作");
@@ -60,7 +66,7 @@ public class ibankMain extends iBankMenu
 		}
 		else if (menuItem.equals("1"))
 		{
-			DataSyncDemo dataSync = new DataSyncDemo(this);
+			DataSyncFrame dataSync = new DataSyncFrame(this);
 			OpenTransWindow(dataSync);
 		}
 //		else if (menuItem.equals("2"))
@@ -72,22 +78,26 @@ public class ibankMain extends iBankMenu
 			UserMenu userMenu = new UserMenu(this);
 			OpenMenuWindow(userMenu);
 		}
-		else if (menuItem.equals("3"))
-		{
-			MQDemo mqdemo = new MQDemo(this, "900000", 10);
-			OpenTransWindow(mqdemo);
+		else if(menuItem.equals("3")){
+			AccountMenu accountMenu = new AccountMenu(this);
+			OpenMenuWindow(accountMenu);
 		}
+//		else if (menuItem.equals("3"))
+//		{
+//			MQDemo mqdemo = new MQDemo(this, "900000", 10);
+//			OpenTransWindow(mqdemo);
+//		}
 		else if ( menuItem.equals("4")){
-			AddUserDemo addUserDemo = new AddUserDemo(this);
-			OpenTransWindow(addUserDemo);
+			AddUserFrame addUserFrame = new AddUserFrame(this);
+			OpenTransWindow(addUserFrame);
 		}
 		else if( menuItem.equals("5")){
 			OperatorMenu operatorMenu = new OperatorMenu(this);
 			OpenMenuWindow(operatorMenu);
 		}
 		else if ( menuItem.equals("7")){
-			QueryDemo queryDemo = new QueryDemo(this);
-			OpenTransWindow(queryDemo);
+			QueryUserFrame queryUserFrame = new QueryUserFrame(this);
+			OpenTransWindow(queryUserFrame);
 		}
 
 		else if (menuItem.equals("90"))

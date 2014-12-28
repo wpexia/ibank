@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user.menu;
 
 import java.awt.KeyEventPostProcessor;
 import java.awt.KeyboardFocusManager;
@@ -10,9 +10,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import demo.main.user.edit.DeleteUserFrame;
+import demo.main.user.edit.UpdateUserFrame;
 import gui.iBankMenu;
 
-public class ModifyUserDemo extends iBankMenu{
+public class ModifyUserMenu extends iBankMenu{
 
 	/**
 	 * 
@@ -25,7 +27,7 @@ public class ModifyUserDemo extends iBankMenu{
 	private HashMap<String, String> mData ;
 
     
-    public ModifyUserDemo(JFrame parent, HashMap<String, String>data){
+    public ModifyUserMenu(JFrame parent, HashMap<String, String>data){
     	super(parent);
     	parentFrame = parent;
     	mData = data;
@@ -50,11 +52,11 @@ public class ModifyUserDemo extends iBankMenu{
 			return;
 		}
 		else if(menuItem.equals("1")){
-			DeleteUserDemo deleteUser = new DeleteUserDemo(this, mData);
+			DeleteUserFrame deleteUser = new DeleteUserFrame(this, mData);
 			OpenTransWindow(deleteUser);
 		}
 		else if(menuItem.equals("2")){
-			UpdateUserDemo updateUser = new UpdateUserDemo(this, mData);
+			UpdateUserFrame updateUser = new UpdateUserFrame(this, mData);
 			OpenTransWindow(updateUser);
 		}
 		else if(menuItem.equals("90")){

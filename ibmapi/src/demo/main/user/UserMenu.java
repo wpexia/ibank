@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user;
 
 
 import javax.swing.JFrame;
@@ -50,11 +50,11 @@ public class UserMenu extends iBankMenu{
 			return;
 		}
 		else if(menuItem.equals("1")){
-			AddUserDemo addUser = new AddUserDemo(this);
+			AddUserFrame addUser = new AddUserFrame(this);
 			OpenTransWindow(addUser);
 		}
 		else if(menuItem.equals("2")){
-			QueryDemo queryUser = new QueryDemo(this);
+			QueryUserFrame queryUser = new QueryUserFrame(this);
 			OpenTransWindow(queryUser);
 		}
 //		else if(menuItem.equals("3")){

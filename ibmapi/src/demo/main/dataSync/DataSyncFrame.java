@@ -1,4 +1,4 @@
-package demo;
+package demo.main.dataSync;
 
 import gui.iBankGui;
 
@@ -10,7 +10,7 @@ import javax.swing.*;
 
 import ibankapi.Transaction;
 
-public final class DataSyncDemo extends iBankGui
+public final class DataSyncFrame extends iBankGui
 {
 	private static final long serialVersionUID = 1L;
 	private JComboBox<String> cbTableList;
@@ -18,7 +18,7 @@ public final class DataSyncDemo extends iBankGui
 
 
 
-	public DataSyncDemo(JFrame parent)
+	public DataSyncFrame(JFrame parent)
 	{
 		super(parent);
 		
