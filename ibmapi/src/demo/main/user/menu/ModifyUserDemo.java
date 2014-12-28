@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user.menu;
 
 import java.awt.KeyEventPostProcessor;
 import java.awt.KeyboardFocusManager;
@@ -10,6 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import demo.main.user.edit.DeleteUserDemo;
+import demo.main.user.edit.UpdateUserDemo;
 import gui.iBankMenu;
 
 public class ModifyUserDemo extends iBankMenu{

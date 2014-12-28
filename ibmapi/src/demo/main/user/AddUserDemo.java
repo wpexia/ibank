@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user;
 
 import gui.iBankGui;
 

@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user;
 
 import gui.iBankGui;
 
@@ -7,6 +7,7 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
+import demo.ShowUserDemo;
 import ibankapi.Transaction;
 
 public final class QueryDemo extends iBankGui {

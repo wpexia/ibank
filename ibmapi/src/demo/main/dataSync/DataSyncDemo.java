@@ -1,4 +1,4 @@
-package demo;
+package demo.main.dataSync;
 
 import gui.iBankGui;
 

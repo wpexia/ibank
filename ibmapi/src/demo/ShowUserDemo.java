@@ -7,6 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
+import demo.main.user.menu.ModifyUserDemo;
 import gui.iBankGui;
 
 public class ShowUserDemo extends iBankGui{

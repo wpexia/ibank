@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
+import demo.main.user.AddUserDemo;
+import demo.main.user.QueryDemo;
 import gui.iBankMenu;
 
 public class UserMenu extends iBankMenu{

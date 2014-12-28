@@ -1,9 +1,15 @@
-package demo;
+package demo.main;
 
 import gui.iBankMenu;
 
 import javax.swing.*;
 
+import demo.OperatorMenu;
+import demo.UserMenu;
+import demo.main.account.AccountMenu;
+import demo.main.dataSync.DataSyncDemo;
+import demo.main.user.AddUserDemo;
+import demo.main.user.QueryDemo;
 import ibankapi.ibankapi;
 
 public class ibankMain extends iBankMenu
@@ -27,7 +33,7 @@ public class ibankMain extends iBankMenu
 		lbDataSync          = CreateLable(" 1. 数据同步");
 		//lbAccountTransfer   = CreateLable(" 2. 转账");
 		lbUser              = CreateLable(" 2. 用户操作");
-		lbMQ                = CreateLable(" 3. IBANK多记录查询示例");
+		lbMQ                = CreateLable(" 3. 账户操作");
 		lbAU                = CreateLable(" 4. 添加用户");
 		lbQuery             = CreateLable(" 7. 查询用户");
 		lbOperator          = CreateLable(" 5. 操作员操作");
@@ -72,11 +78,15 @@ public class ibankMain extends iBankMenu
 			UserMenu userMenu = new UserMenu(this);
 			OpenMenuWindow(userMenu);
 		}
-		else if (menuItem.equals("3"))
-		{
-			MQDemo mqdemo = new MQDemo(this, "900000", 10);
-			OpenTransWindow(mqdemo);
+		else if(menuItem.equals("3")){
+			AccountMenu accountMenu = new AccountMenu(this);
+			OpenMenuWindow(accountMenu);
 		}
+//		else if (menuItem.equals("3"))
+//		{
+//			MQDemo mqdemo = new MQDemo(this, "900000", 10);
+//			OpenTransWindow(mqdemo);
+//		}
 		else if ( menuItem.equals("4")){
 			AddUserDemo addUserDemo = new AddUserDemo(this);
 			OpenTransWindow(addUserDemo);

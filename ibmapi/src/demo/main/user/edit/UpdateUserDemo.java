@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user.edit;
 
 import ibankapi.Transaction;
 
