@@ -195,6 +195,7 @@ public class iBankGui extends JFrame
 		dispose();
 		setVisible(false);
 		parentFrame.setVisible(true);
+		parentFrame.pack();
 	}
 
 	protected void myAddKeylistener()

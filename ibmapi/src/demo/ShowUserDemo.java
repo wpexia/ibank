@@ -78,8 +78,6 @@ public class ShowUserDemo extends iBankGui{
 		AddInputComponent(lbIdNumber, 0, 2, 8, 1);
 		AddInputComponent(textIdNumber, 8, 2, GridBagConstraints.RELATIVE, 1);
 		textIdNumber.setText(data.get("IDNO"));
-		System.out.println("IDNO:  " + data.get("IDNO"));
-		System.out.println(textIdNumber.getText());
 		AddInputComponent(lbGender, 0, 3, 8, 1);
 		AddInputComponent(textGender, 8, 3, GridBagConstraints.RELATIVE, 1);
 		textGender.setText(data.get("GENDER"));
@@ -96,7 +94,7 @@ public class ShowUserDemo extends iBankGui{
 	
 	protected void TransactionAction(){
 		super.TransactionAction();
-		ModifyUserDemo modifyUser = new ModifyUserDemo(this, mData);
+		ModifyUserDemo modifyUser = new ModifyUserDemo(parentFrame, mData);
 		OpenTransWindow(modifyUser);
 		
 	}
