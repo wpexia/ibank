@@ -81,9 +81,9 @@ public class ibankguidemo extends iBankLogon
 
 		dispose();
 		ibankapi.Init(user);
-		ibankMain ibankMain = new ibankMain();
-		ibankMain.Display();
-		ibankMain.pack();
+		ibankMainMenu ibankMainMenu = new ibankMainMenu();
+		ibankMainMenu.Display();
+		ibankMainMenu.pack();
 	}
 	
 	protected void ExitAction()

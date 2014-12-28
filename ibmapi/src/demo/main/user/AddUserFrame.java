@@ -9,7 +9,7 @@ import javax.swing.*;
 
 import ibankapi.Transaction;
 
-public final class AddUserDemo extends iBankGui {
+public final class AddUserFrame extends iBankGui {
 
 	private static final long serialVersionUID = 9063166698820167875L;
 	private JComboBox<String> comboIdType;
@@ -20,7 +20,7 @@ public final class AddUserDemo extends iBankGui {
 	private JTextField textName2;
 	private JTextField textCustomerId;
 
-	public AddUserDemo(JFrame parent) {
+	public AddUserFrame(JFrame parent) {
 		super(parent);
 
 		setTitle("iBank Add User Demo");

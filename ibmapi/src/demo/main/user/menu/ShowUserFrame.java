@@ -1,4 +1,4 @@
-package demo;
+package demo.main.user.menu;
 
 import java.awt.GridBagConstraints;
 import java.util.HashMap;
@@ -7,10 +7,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import demo.main.user.menu.ModifyUserDemo;
 import gui.iBankGui;
 
-public class ShowUserDemo extends iBankGui{
+public class ShowUserFrame extends iBankGui{
 	
 	private static final long serialVersionUID = 9063166698820167875L;
 	private JTextField textIdType;
@@ -22,7 +21,7 @@ public class ShowUserDemo extends iBankGui{
 	private JTextField textCustomerId;
 	private HashMap<String, String>mData;
 
-	public ShowUserDemo(JFrame parent, HashMap<String, String>data) {
+	public ShowUserFrame(JFrame parent, HashMap<String, String>data) {
 		super(parent);
 		mData = data;
 
@@ -104,7 +103,7 @@ public class ShowUserDemo extends iBankGui{
 	protected void TransactionAction(){
 		super.TransactionAction();
 
-		ModifyUserDemo modifyUser = new ModifyUserDemo(parentFrame, mData);
+		ModifyUserMenu modifyUser = new ModifyUserMenu(parentFrame, mData);
 		OpenTransWindow(modifyUser);
 		
 	}

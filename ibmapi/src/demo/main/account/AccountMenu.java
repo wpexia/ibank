@@ -38,11 +38,11 @@ public class AccountMenu extends iBankMenu{
 			return;
 		}
 		else if(menuItem.equals("1")){
-			AddAccountDemo addAccount = new AddAccountrDemo(this);
+			AddAccountFrame addAccount = new AddAccountFrame(this);
 			OpenTransWindow(addAccount);
 		}
 		else if(menuItem.equals("2")){
-			QueryAccountDemo queryAccount = new QueryAccountDemo(this);
+			QueryAccountFrame queryAccount = new QueryAccountFrame(this);
 			OpenTransWindow(queryAccount);
 		}
 

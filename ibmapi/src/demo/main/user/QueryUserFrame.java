@@ -7,16 +7,16 @@ import java.util.HashMap;
 
 import javax.swing.*;
 
-import demo.ShowUserDemo;
+import demo.main.user.menu.ShowUserFrame;
 import ibankapi.Transaction;
 
-public final class QueryDemo extends iBankGui {
+public final class QueryUserFrame extends iBankGui {
 
 	private static final long serialVersionUID = 9063166698820167875L;
 
 	private JTextField textCustomerId;
 
-	public QueryDemo(JFrame parent) {
+	public QueryUserFrame(JFrame parent) {
 		super(parent);
 
 		setTitle("iBank Query User Demo");
@@ -75,7 +75,7 @@ public final class QueryDemo extends iBankGui {
 		data.put("NAME2", Trans.GetResponseValue("NAME2"));
 
 
-		ShowUserDemo showUser = new ShowUserDemo(this, data);
+		ShowUserFrame showUser = new ShowUserFrame(this, data);
 		OpenTransWindow(showUser);
 
 

@@ -5,14 +5,14 @@ import gui.iBankMenu;
 import javax.swing.*;
 
 import demo.OperatorMenu;
-import demo.UserMenu;
 import demo.main.account.AccountMenu;
-import demo.main.dataSync.DataSyncDemo;
-import demo.main.user.AddUserDemo;
-import demo.main.user.QueryDemo;
+import demo.main.dataSync.DataSyncFrame;
+import demo.main.user.AddUserFrame;
+import demo.main.user.QueryUserFrame;
+import demo.main.user.UserMenu;
 import ibankapi.ibankapi;
 
-public class ibankMain extends iBankMenu
+public class ibankMainMenu extends iBankMenu
 {
 	
 	private static final long serialVersionUID = 1L;
@@ -25,7 +25,7 @@ public class ibankMain extends iBankMenu
 	private JLabel         lbOperator;
 	
 	
-	public ibankMain()
+	public ibankMainMenu()
 	{
 		super(null);
 		setTitle("iBank Demo");
@@ -66,7 +66,7 @@ public class ibankMain extends iBankMenu
 		}
 		else if (menuItem.equals("1"))
 		{
-			DataSyncDemo dataSync = new DataSyncDemo(this);
+			DataSyncFrame dataSync = new DataSyncFrame(this);
 			OpenTransWindow(dataSync);
 		}
 //		else if (menuItem.equals("2"))
@@ -88,16 +88,16 @@ public class ibankMain extends iBankMenu
 //			OpenTransWindow(mqdemo);
 //		}
 		else if ( menuItem.equals("4")){
-			AddUserDemo addUserDemo = new AddUserDemo(this);
-			OpenTransWindow(addUserDemo);
+			AddUserFrame addUserFrame = new AddUserFrame(this);
+			OpenTransWindow(addUserFrame);
 		}
 		else if( menuItem.equals("5")){
 			OperatorMenu operatorMenu = new OperatorMenu(this);
 			OpenMenuWindow(operatorMenu);
 		}
 		else if ( menuItem.equals("7")){
-			QueryDemo queryDemo = new QueryDemo(this);
-			OpenTransWindow(queryDemo);
+			QueryUserFrame queryUserFrame = new QueryUserFrame(this);
+			OpenTransWindow(queryUserFrame);
 		}
 
 		else if (menuItem.equals("90"))

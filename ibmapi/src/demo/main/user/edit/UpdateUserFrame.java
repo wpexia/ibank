@@ -13,7 +13,7 @@ import javax.swing.JTextField;
 
 import gui.iBankGui;
 
-public class UpdateUserDemo extends iBankGui{
+public class UpdateUserFrame extends iBankGui{
 
 	private static final long serialVersionUID = 9063166698820167875L;
 	private JComboBox<String> comboIdType;
@@ -25,7 +25,7 @@ public class UpdateUserDemo extends iBankGui{
 	private JTextField textCustomerId;
 	private JTextField textNewCustomerId;
 
-	public UpdateUserDemo(JFrame parent, HashMap<String, String> mData) {
+	public UpdateUserFrame(JFrame parent, HashMap<String, String> mData) {
 		super(parent);
 
 		setTitle("iBank Update User Demo");
