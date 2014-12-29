@@ -21,7 +21,7 @@ public class DeleteUserFrame extends iBankGui{
 		super(parent);
 
 		setTitle("iBank Delete User Demo");
-		JLabel lbCustomerId = new JLabel("用户ID");
+		JLabel lbCustomerId = CreateLable("用户ID");
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
 		AddInputComponent(lbCustomerId, 0, 0, 8, 1);

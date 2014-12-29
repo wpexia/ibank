@@ -15,9 +15,10 @@ public class ShowAccountsMenu extends iBankMenu {
 		super(parent);
 		data = mData;
 		setTitle("Account List");
-		AddMenuItem(CreateLable("客户号：   " + data.get("CUSTNO")));
+		AddMenuItem(CreateLable("客户号：   " + data.get("CUSTID")));
+		AddMenuItem(CreateLable("该用户账户信息如下"));
 		
-		for(int i = 0; i < data.size();i ++){
+		for(int i = 0; i < data.size() - 1;i ++){
 			JLabel lbAccount = CreateLable((i + 1) + " : " + data.get(i + ""));
 			AddMenuItem(lbAccount);
 		}
@@ -39,6 +40,7 @@ public class ShowAccountsMenu extends iBankMenu {
 		}
 		else {
 			HashMap<String, String>mapDetail = new HashMap<>();
+			mapDetail.put("CUSTID", data.get("CUSTID"));
 /*****************这部分是自己编的数据**************/
 			mapDetail.put("ACCTNO", "A123001");
 			mapDetail.put("ACDATE", "20141228");
