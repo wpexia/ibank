@@ -83,6 +83,7 @@ public class UpdateOperatorFrame extends iBankGui
 
 		lbTitle.setText("修改操作员");
 		btnOK.setText("修改");
+		btnOK.addKeyListener(keyListener);
 
 		SetFont(textConnec);
 		SetFont(textName);

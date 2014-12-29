@@ -78,6 +78,7 @@ public class AddOperatorFrame extends iBankGui
 
 		lbTitle.setText("增加操作员");
 		btnOK.setText("增加");
+		btnOK.addKeyListener(keyListener);
 
 		SetFont(textConnec);
 		SetFont(textName);

@@ -53,6 +53,10 @@ public class ModifyOperatorMenu extends iBankMenu
 		}
 		else if (menuItem.equals("90")){
 			returnMain();
+		} else
+		{
+			JOptionPane.showMessageDialog(null, "无效的操作员编辑业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 	}
 }

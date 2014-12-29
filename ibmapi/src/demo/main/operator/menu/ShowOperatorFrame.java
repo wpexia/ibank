@@ -78,6 +78,7 @@ public class ShowOperatorFrame extends iBankGui
 
 		lbTitle.setText("编辑操作员");
 		btnOK.setText("编辑");
+		btnOK.addKeyListener(keyListener);
 
 		SetFont(textConnec);
 		SetFont(textName);

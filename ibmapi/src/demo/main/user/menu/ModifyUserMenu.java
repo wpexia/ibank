@@ -60,6 +60,10 @@ public class ModifyUserMenu extends iBankMenu{
 		}
 		else if(menuItem.equals("90")){
             returnMain();
+		} else
+		{
+			JOptionPane.showMessageDialog(null, "无效的用户编辑业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		
 	}

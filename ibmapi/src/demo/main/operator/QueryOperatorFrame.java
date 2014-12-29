@@ -29,6 +29,7 @@ public class QueryOperatorFrame extends iBankGui
 
 		lbTitle.setText("查询操作员");
 		btnOK.setText("查询");
+		btnOK.addKeyListener(keyListener);
 
 
 		SetFont(textOperatorId);
