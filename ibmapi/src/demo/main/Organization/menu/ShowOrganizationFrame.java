@@ -1,24 +1,31 @@
-package demo.main.organization;
+package demo.main.organization.menu;
 
+
+import demo.main.operator.menu.ModifyOperatorMenu;
 import gui.iBankGui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
-public class AddOrganizationFrame extends iBankGui
+public class ShowOrganizationFrame extends iBankGui
 {
 	private JTextField textOrgId;
 	private JTextField textCode;
 	private JTextField textAddress;
-	private JComboBox<String> comboBoxType;
-	private JComboBox<String> comboBoxAuth;
+	private JTextField textType;
+	private JTextField textAuth;
 	private JTextField textConnec;
 
-	public AddOrganizationFrame(JFrame parent)
+	private HashMap<String, String> mdata;
+
+	public ShowOrganizationFrame(JFrame parent,HashMap<String, String> data)
 	{
 		super(parent);
 
-		setTitle("Add Organization");
+		mdata = data;
+
+		setTitle("Show Organization");
 
 		JLabel lbOrgId = CreateLable("机构编号");
 		JLabel lbCode = CreateLable("代号");
@@ -26,7 +33,6 @@ public class AddOrganizationFrame extends iBankGui
 		JLabel lbType = CreateLable("类型");
 		JLabel lbAuth = CreateLable("权限");
 		JLabel lbConnec = CreateLable("联系方式");
-
 
 		textOrgId = new JTextField();
 		textOrgId.setColumns(15);
@@ -40,21 +46,15 @@ public class AddOrganizationFrame extends iBankGui
 		textAddress.setColumns(15);
 		textAddress.addKeyListener(keyListener);
 
-		String[] types = {"柜员", "非柜员"};
-		comboBoxType = new JComboBox<String>();
-		for (int i = 0; i < types.length; ++i)
-		{
-			comboBoxType.addItem(types[i]);
-		}
-		comboBoxType.addKeyListener(keyListener);
+		textType = new JTextField();
+		textType.setColumns(15);
+		textType.addKeyListener(keyListener);
 
-		String[] auth = {"柜员", "管理"};
-		comboBoxAuth = new JComboBox<String>();
-		for (int i = 0; i < auth.length; ++i)
-		{
-			comboBoxAuth.addItem(auth[i]);
-		}
-		comboBoxAuth.addKeyListener(keyListener);
+
+		textAuth = new JTextField();
+		textAuth.setColumns(15);
+		textAuth.addKeyListener(keyListener);
+
 
 
 		textConnec = new JTextField();
@@ -80,12 +80,22 @@ public class AddOrganizationFrame extends iBankGui
 		AddInputComponent(lbAddress, 0, 2, 8, 1);
 		AddInputComponent(textAddress, 8, 2, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbType, 0, 3, 8, 1);
-		AddInputComponent(comboBoxType, 8, 3, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(textType, 8, 3, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbAuth, 0, 4, 8, 1);
-		AddInputComponent(comboBoxAuth, 8, 4, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(textAuth, 8, 4, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbConnec, 0, 5, 8, 1);
 		AddInputComponent(textConnec, 8, 5, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(btnOK, 0, 6, 8, 1);
 	}
 
+	protected void TransactionAction()
+	{
+		super.TransactionAction();
+
+
+
+		dispose();
+		ModifyOperatorMenu modifyOperatorMenu = new ModifyOperatorMenu(parentFrame,mdata);
+		OpenTransWindow(modifyOperatorMenu);
+	}
 }

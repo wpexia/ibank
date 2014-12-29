@@ -1,6 +1,7 @@
 package demo.main.organization;
 
 
+import demo.main.organization.menu.ShowOrganizationFrame;
 import gui.iBankGui;
 
 import javax.swing.*;
@@ -44,7 +45,8 @@ public class QueryOrganizationFrame extends iBankGui
 		HashMap<String, String> data = new HashMap<String, String>();
 
 
-
+		ShowOrganizationFrame showOrganizationFrame = new ShowOrganizationFrame(this,data);
+		OpenTransWindow(showOrganizationFrame);
 
 	}
 }
