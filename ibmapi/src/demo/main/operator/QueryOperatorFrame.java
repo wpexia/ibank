@@ -11,6 +11,8 @@ import java.util.HashMap;
 public class QueryOperatorFrame extends iBankGui
 {
 	private static final long serialVersionUID = 503L;
+
+	private JTextField textOrgId;
 	private JTextField textOperatorId;
 
 
@@ -20,8 +22,13 @@ public class QueryOperatorFrame extends iBankGui
 
 		setTitle("iBank Query Operator Demo");
 
+		JLabel lbOrgId = CreateLable("机构编号");
 		JLabel lbOperatorId = CreateLable("操作员编号");
 
+
+		textOrgId = new JTextField();
+		textOrgId.setColumns(15);
+		textOrgId.addKeyListener(keyListener);
 
 		textOperatorId = new JTextField();
 		textOperatorId.setColumns(15);
@@ -33,10 +40,14 @@ public class QueryOperatorFrame extends iBankGui
 
 
 		SetFont(textOperatorId);
+		SetFont(textOrgId);
 
-		AddInputComponent(lbOperatorId, 0, 0, 8, 1);
-		AddInputComponent(textOperatorId, 8, 0, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(btnOK, 0, 1, 8, 1);
+
+		AddInputComponent(lbOrgId, 0, 0, 8, 1);
+		AddInputComponent(textOrgId, 8, 0, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbOperatorId, 0, 1, 8, 1);
+		AddInputComponent(textOperatorId, 8, 1, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(btnOK, 0, 2, 8, 1);
 
 
 	}
@@ -48,6 +59,7 @@ public class QueryOperatorFrame extends iBankGui
 		if (textOperatorId.getText().isEmpty())
 		{
 			JOptionPane.showMessageDialog(null,"请输入操作员ID","错误",JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 
 		HashMap<String, String> data = new HashMap<String, String>();
