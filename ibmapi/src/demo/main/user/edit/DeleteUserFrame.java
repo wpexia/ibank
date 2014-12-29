@@ -29,6 +29,7 @@ public class DeleteUserFrame extends iBankGui
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
 		textCustomerId.setText(mData.get("CUSTID"));
+		textCustomerId.addKeyListener(keyListener);
 
 		lbTitle.setText("删除用户");
 		btnOK.setText("删除");

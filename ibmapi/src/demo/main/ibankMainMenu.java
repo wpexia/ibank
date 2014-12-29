@@ -25,6 +25,7 @@ public class ibankMainMenu extends iBankMenu
 	public ibankMainMenu()
 	{
 		super(null);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setTitle("iBank Demo");
 
 		lbDataSync = CreateLable(" 1. 数据同步");

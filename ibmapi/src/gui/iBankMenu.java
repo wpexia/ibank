@@ -48,7 +48,7 @@ public class iBankMenu extends JFrame
 
 	public iBankMenu(JFrame parent)
 	{
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setTitle("iBank Demo: Replace me");
 
 		parentFrame = parent;
