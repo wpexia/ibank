@@ -120,6 +120,8 @@ public class ShowOperatorFrame extends iBankGui
 	{
 		super.TransactionAction();
 
-
+		dispose();
+		ModifyOperatorMenu modifyOperatorMenu = new ModifyOperatorMenu(parentFrame,mdata);
+		OpenTransWindow(modifyOperatorMenu);
 	}
 }

@@ -23,13 +23,12 @@ public class ModifyUserMenu extends iBankMenu{
 	private JLabel         lbDeleteUser;
 	private JLabel         lbUpdateUser;
 
-    protected JFrame parentFrame;
 	private HashMap<String, String> mData ;
 
     
     public ModifyUserMenu(JFrame parent, HashMap<String, String>data){
     	super(parent);
-    	parentFrame = parent;
+
     	mData = data;
     	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
