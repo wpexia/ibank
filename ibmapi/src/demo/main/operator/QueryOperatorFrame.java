@@ -1,10 +1,12 @@
 package demo.main.operator;
 
 
+import demo.main.operator.menu.ShowOperatorFrame;
 import gui.iBankGui;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class QueryOperatorFrame extends iBankGui
 {
@@ -47,6 +49,11 @@ public class QueryOperatorFrame extends iBankGui
 			JOptionPane.showMessageDialog(null,"请输入操作员ID","错误",JOptionPane.ERROR_MESSAGE);
 		}
 
+		HashMap<String, String> data = new HashMap<String, String>();
+
+
+		ShowOperatorFrame showOperatorFrame = new ShowOperatorFrame(this,data);
+		OpenTransWindow(showOperatorFrame);
 
 
 	}

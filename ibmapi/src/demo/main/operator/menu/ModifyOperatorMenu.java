@@ -1,5 +1,7 @@
 package demo.main.operator.menu;
 
+import demo.main.operator.menu.edit.DeleteOperatorFrame;
+import demo.main.operator.menu.edit.UpdateOperatorFrame;
 import gui.iBankMenu;
 
 import javax.swing.*;
@@ -41,11 +43,13 @@ public class ModifyOperatorMenu extends iBankMenu
 		}
 		else if (menuItem.equals("1"))
 		{
-
+			DeleteOperatorFrame deleteOperatorFrame = new DeleteOperatorFrame(this, mData);
+			OpenTransWindow(deleteOperatorFrame);
 		}
 		else if (menuItem.equals("2"))
 		{
-
+			UpdateOperatorFrame updateOperatorFrame = new UpdateOperatorFrame(this, mData);
+			OpenTransWindow(updateOperatorFrame);
 		}
 		else if (menuItem.equals("90")){
 			returnMain();
