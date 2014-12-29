@@ -37,4 +37,17 @@ public class QueryOperatorFrame extends iBankGui
 
 
 	}
+
+	protected void TransactionAction()
+	{
+		super.TransactionAction();
+
+		if (textOperatorId.getText().isEmpty())
+		{
+			JOptionPane.showMessageDialog(null,"请输入操作员ID","错误",JOptionPane.ERROR_MESSAGE);
+		}
+
+
+
+	}
 }

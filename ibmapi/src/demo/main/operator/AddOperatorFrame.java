@@ -90,17 +90,19 @@ public class AddOperatorFrame extends iBankGui
 		AddInputComponent(textOperatorId, 8, 0, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbOrgId, 0, 1, 8, 1);
 		AddInputComponent(textOrgId, 8, 1, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbGender, 0, 2, 8, 1);
-		AddInputComponent(comboBoxGender, 8, 2, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbConnec, 0, 3, 8, 1);
-		AddInputComponent(textConnec, 8, 3, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbPassword, 0, 4, 8, 1);
-		AddInputComponent(textPassword, 8, 4, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbAuth, 0, 5, 8, 1);
-		AddInputComponent(comboBoxAuth, 8, 5, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbType, 0, 6, 8, 1);
-		AddInputComponent(comboBoxType, 8, 6, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(btnOK, 0, 7, 8, 1);
+		AddInputComponent(lbName, 0, 2, 8, 1);
+		AddInputComponent(textOrgId, 8, 2, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbGender, 0, 3, 8, 1);
+		AddInputComponent(comboBoxGender, 8, 3, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbConnec, 0, 4, 8, 1);
+		AddInputComponent(textConnec, 8, 4, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbPassword, 0, 5, 8, 1);
+		AddInputComponent(textPassword, 8, 5, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbAuth, 0, 6, 8, 1);
+		AddInputComponent(comboBoxAuth, 8, 6, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbType, 0, 7, 8, 1);
+		AddInputComponent(comboBoxType, 8, 7, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(btnOK, 0, 8, 8, 1);
 	}
 
 }
