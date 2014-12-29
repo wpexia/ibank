@@ -119,14 +119,7 @@ public class iBankMenu extends JFrame
 		AddBlank(headPane, 3);
 		headPane.add(lbDateDisplay);
 		headPane.add(lbDate);
-
-		/*
-		AddComponent(InputPane, lbSelect, 1, 7);
-		AddBlank(InputPane, 1);
-		InputPane.add(lbPrompt);
-		InputPane.add(textInput);
-		AddBlank(InputPane, 4);
-		// */
+		
 		InputPane.add(lbSelect);
 		InputPane.add(lbPrompt);
 		InputPane.add(textInput);

@@ -24,10 +24,6 @@ public class ShowAccountsMenu extends iBankMenu {
 		}
 		AddMenuItem(lbExit);
 	}
-	protected void returnMain()
-	{
-		return;
-	}
 	
 	protected void OpenTransFrame(String menuItem){
 		super.OpenTransFrame(menuItem);

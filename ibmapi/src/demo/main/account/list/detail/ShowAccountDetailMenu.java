@@ -52,11 +52,6 @@ public class ShowAccountDetailMenu extends iBankMenu {
 		AddMenuItem(lbDeleteAcc);
 	}
 	
-	protected void returnMain()
-	{
-		return;
-	}
-	
 	protected void OpenTransFrame(String menuItem){
 		super.OpenTransFrame(menuItem);
 		if(menuItem.isEmpty()){
@@ -75,6 +70,7 @@ public class ShowAccountDetailMenu extends iBankMenu {
 			OpenTransWindow(updatePwd);
 		}
 		else if(menuItem.equals("3")){
+			/*************************这里写通过账户号查询子账户*************************/
 			QuerySubAccountMenu querySubAcc = new QuerySubAccountMenu(this, data);
 			OpenMenuWindow(querySubAcc);
 		}

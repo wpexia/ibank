@@ -47,11 +47,11 @@ public class UpdateAccPwd extends iBankGui {
 		AddInputComponent(lbAccountNo, 0, 0, 20, 1);
 		AddInputComponent(lbOldPwd, 0, 1, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(pswdOldPwd, 8, 1, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbNewPwd, 0, 1, 8, 1);
-		AddInputComponent(pswdNewPwd, 8, 1, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(lbNewPwdConf, 0, 2, 8, 1);
-		AddInputComponent(pswdNewPwdConf, 8, 2, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(btnOK, 0, 3, 8, 1);
+		AddInputComponent(lbNewPwd, 0, 2, 8, 1);
+		AddInputComponent(pswdNewPwd, 8, 2, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(lbNewPwdConf, 0, 3, 8, 1);
+		AddInputComponent(pswdNewPwdConf, 8, 3, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(btnOK, 0, 4, 8, 1);
 		
 	}
 
