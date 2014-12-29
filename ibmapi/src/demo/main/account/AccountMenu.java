@@ -42,8 +42,8 @@ public class AccountMenu extends iBankMenu{
 			OpenTransWindow(addAccount);
 		}
 		else if(menuItem.equals("2")){
-			QueryAccountFrame queryAccount = new QueryAccountFrame(this);
-			OpenTransWindow(queryAccount);
+//			QueryAccountFrame queryAccount = new QueryAccountFrame(this);
+//			OpenTransWindow(queryAccount);
 		}
 
 		else if(menuItem.equals("90")){

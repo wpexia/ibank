@@ -13,30 +13,40 @@ import javax.swing.JTextField;
 
 import gui.iBankGui;
 
-public class DeleteUserFrame extends iBankGui{
+public class DeleteUserFrame extends iBankGui
+{
 
 	private static final long serialVersionUID = 9063166698820167875L;
 	private JTextField textCustomerId;
-	public DeleteUserFrame(JFrame parent, HashMap<String, String> mData) {
+
+	public DeleteUserFrame(JFrame parent, HashMap<String, String> mData)
+	{
 		super(parent);
 
 		setTitle("iBank Delete User Demo");
 		JLabel lbCustomerId = CreateLable("用户ID");
+
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
-		AddInputComponent(lbCustomerId, 0, 0, 8, 1);
-		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
 		textCustomerId.setText(mData.get("CUSTID"));
+
 		lbTitle.setText("删除用户");
 		btnOK.setText("删除");
+		btnOK.addKeyListener(keyListener);
+
 		SetFont(textCustomerId);
+
+		AddInputComponent(lbCustomerId, 0, 0, 8, 1);
+		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(btnOK, 0, 2, 8, 1);
 	}
-	
-	protected void TransactionAction() {
+
+	protected void TransactionAction()
+	{
 		super.TransactionAction();
 
-		if (textCustomerId.getText().isEmpty()) {
+		if (textCustomerId.getText().isEmpty())
+		{
 			JOptionPane.showMessageDialog(null, "请输入用户ID", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -50,13 +60,15 @@ public class DeleteUserFrame extends iBankGui{
 
 		bRet = Trans.Init();
 
-		if (!bRet) {
+		if (!bRet)
+		{
 			ShowStatusMessage(Trans.GetStatusMsg());
 			return;
 		}
 
 		bRet = Trans.SendMessage(data);
-		if (!bRet) {
+		if (!bRet)
+		{
 			ShowStatusMessage(Trans.GetStatusMsg());
 			return;
 		}
@@ -69,6 +81,5 @@ public class DeleteUserFrame extends iBankGui{
 		Trans.Release();
 	}
 
-	
 
 }

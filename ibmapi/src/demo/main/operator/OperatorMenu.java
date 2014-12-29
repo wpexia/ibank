@@ -1,4 +1,4 @@
-package demo;
+package demo.main.operator;
 
 
 import gui.iBankMenu;
@@ -41,15 +41,21 @@ public class OperatorMenu extends iBankMenu
 		}
 		else if (menuItem.equals("1"))
 		{
-
+			AddOperatorFrame addOperatorFrame = new AddOperatorFrame(this);
+			OpenTransWindow(addOperatorFrame);
 		}
 		else if (menuItem.equals("2"))
 		{
-
+			QueryOperatorFrame queryOperatorFrame = new QueryOperatorFrame(this);
+			OpenTransWindow(queryOperatorFrame);
 		}
 		else if (menuItem.equals("90"))
 		{
 			returnMain();
+		} else
+		{
+			JOptionPane.showMessageDialog(null, "无效的操作员业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 	}
 

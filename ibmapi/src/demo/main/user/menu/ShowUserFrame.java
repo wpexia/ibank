@@ -103,6 +103,7 @@ public class ShowUserFrame extends iBankGui{
 	protected void TransactionAction(){
 		super.TransactionAction();
 
+		dispose();
 		ModifyUserMenu modifyUser = new ModifyUserMenu(parentFrame, mData);
 		OpenTransWindow(modifyUser);
 		

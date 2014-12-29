@@ -37,6 +37,7 @@ public final class DataSyncFrame extends iBankGui
 		
 		lbTitle.setText("数据同步");
 		btnOK.setText("同步");
+		btnOK.addKeyListener(keyListener);
 	
 		AddInputComponent(lbTable,      0, 0, 8, 1);
 		AddInputComponent(cbTableList,  8, 0, 8, 1);

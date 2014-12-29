@@ -23,13 +23,12 @@ public class ModifyUserMenu extends iBankMenu{
 	private JLabel         lbDeleteUser;
 	private JLabel         lbUpdateUser;
 
-    protected JFrame parentFrame;
 	private HashMap<String, String> mData ;
 
     
     public ModifyUserMenu(JFrame parent, HashMap<String, String>data){
     	super(parent);
-    	parentFrame = parent;
+
     	mData = data;
     	setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
@@ -61,6 +60,10 @@ public class ModifyUserMenu extends iBankMenu{
 		}
 		else if(menuItem.equals("90")){
             returnMain();
+		} else
+		{
+			JOptionPane.showMessageDialog(null, "无效的用户编辑业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 		
 	}
