@@ -4,7 +4,7 @@ import gui.iBankMenu;
 
 import javax.swing.*;
 
-import demo.OperatorMenu;
+import demo.main.operator.OperatorMenu;
 import demo.main.account.AccountMenu;
 import demo.main.dataSync.DataSyncFrame;
 import demo.main.user.AddUserFrame;
@@ -15,7 +15,7 @@ import ibankapi.ibankapi;
 public class ibankMainMenu extends iBankMenu
 {
 	
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 12L;
 	private JLabel         lbAccountTransfer;  
 	private JLabel         lbDataSync;
 	private JLabel         lbMQ;
