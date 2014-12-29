@@ -25,10 +25,11 @@ public class DeleteUserFrame extends iBankGui
 
 		setTitle("iBank Delete User Demo");
 		JLabel lbCustomerId = CreateLable("用户ID");
-		
+
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
 		textCustomerId.setText(mData.get("CUSTID"));
+		textCustomerId.addKeyListener(keyListener);
 
 		lbTitle.setText("删除用户");
 		btnOK.setText("删除");
