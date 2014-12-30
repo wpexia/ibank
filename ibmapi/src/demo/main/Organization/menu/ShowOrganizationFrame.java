@@ -37,29 +37,34 @@ public class ShowOrganizationFrame extends iBankGui
 		textOrgId = new JTextField();
 		textOrgId.setColumns(15);
 		textOrgId.addKeyListener(keyListener);
+		textOrgId.setEditable(false);
 
 		textCode = new JTextField();
 		textCode.setColumns(15);
 		textCode.addKeyListener(keyListener);
+		textCode.setEditable(false);
 
 		textAddress = new JTextField();
 		textAddress.setColumns(15);
 		textAddress.addKeyListener(keyListener);
+		textAddress.setEditable(false);
 
 		textType = new JTextField();
 		textType.setColumns(15);
 		textType.addKeyListener(keyListener);
+		textType.setEditable(false);
 
 
 		textAuth = new JTextField();
 		textAuth.setColumns(15);
 		textAuth.addKeyListener(keyListener);
-
+		textAuth.setEditable(false);
 
 
 		textConnec = new JTextField();
 		textConnec.setColumns(15);
 		textConnec.addKeyListener(keyListener);
+		textConnec.setEditable(false);
 
 
 		lbTitle.setText("增加机构");
