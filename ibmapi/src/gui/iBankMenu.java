@@ -42,9 +42,6 @@ public class iBankMenu extends JFrame
 	protected GridLayout      glMenu;
 	protected GridLayout      glInput;
 
-	protected KeyboardFocusManager  manager;
-	protected KeyEventPostProcessor postProcessor;
-	protected boolean               listenerFlag;
 
 	public iBankMenu(JFrame parent)
 	{
@@ -137,13 +134,15 @@ public class iBankMenu extends JFrame
 		textInput.addKeyListener(new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if(!listenerFlag)
-					addEsc();
+
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-
+				if (KeyEvent.VK_ESCAPE == e.getKeyCode())
+				{
+					returnMain();
+				}
 			}
 
 			@Override
@@ -168,8 +167,6 @@ public class iBankMenu extends JFrame
 
 	protected void OpenTransFrame(String menuItem)
 	{
-		manager.removeKeyEventPostProcessor(postProcessor);
-		listenerFlag = false;
 		return;
 	}
 
@@ -257,32 +254,9 @@ public class iBankMenu extends JFrame
 
 	protected void returnMain()
 	{
-		if(listenerFlag)
-		{
-			manager.removeKeyEventPostProcessor(postProcessor);
-			listenerFlag = false;
-		}
 		dispose();
 		setVisible(false);
 		parentFrame.setVisible(true);
 		parentFrame.pack();
-	}
-
-	private void addEsc(){
-		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-		listenerFlag = true;
-		manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
-				{
-					@Override
-					public boolean postProcessKeyEvent(KeyEvent e)
-					{
-						if (KeyEvent.VK_ESCAPE == e.getKeyCode())
-						{
-							returnMain();
-						}
-						return true;
-					}
-				}
-		);
 	}
 }

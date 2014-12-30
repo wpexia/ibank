@@ -13,10 +13,7 @@ import ibankapi.ibankapi;
 public class ibankguidemo extends iBankLogon 
 {
 	private static final long serialVersionUID = 1L;
-	protected KeyboardFocusManager manager;
-	protected KeyEventPostProcessor postProcessor;
 	protected KeyListener enterListener;
-	boolean listenerFlag = false;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() 
@@ -42,13 +39,14 @@ public class ibankguidemo extends iBankLogon
 		enterListener = new KeyListener() {
 			@Override
 			public void keyTyped(KeyEvent e) {
-				if(!listenerFlag)
-					addEnter();
+
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-
+				if (e.getKeyCode() == KeyEvent.VK_ENTER){
+					LogonAction();
+				}
 			}
 
 			@Override
@@ -64,8 +62,6 @@ public class ibankguidemo extends iBankLogon
 	{
 		String user  = username.getText();
 		char [] pass = password.getPassword();
-		manager.removeKeyEventPostProcessor(postProcessor);
-		listenerFlag = false;
 		
 		if (user.isEmpty())
 		{
@@ -91,17 +87,4 @@ public class ibankguidemo extends iBankLogon
 		System.exit(0);
 	}
 
-	protected void addEnter(){
-		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-		listenerFlag = true;
-		manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor() {
-			@Override
-			public boolean postProcessKeyEvent(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_ENTER){
-					LogonAction();
-				}
-				return true;
-			}
-		});
-	}
 }

@@ -41,6 +41,7 @@ public final class QueryUserFrame extends iBankGui {
 		super.TransactionAction();
 		if(textCustomerId.getText().isEmpty()){
 			JOptionPane.showMessageDialog(null, "请输入用户ID", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
 		}
 
 		boolean bRet;
