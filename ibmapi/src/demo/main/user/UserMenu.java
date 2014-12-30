@@ -21,6 +21,7 @@ public class UserMenu extends iBankMenu
 
 
 		setTitle("User Menu");
+		
 
 		lbAddUser = CreateLable(" 1. 添加用户");
 		lbQueryUser = CreateLable(" 2. 查询用户");
