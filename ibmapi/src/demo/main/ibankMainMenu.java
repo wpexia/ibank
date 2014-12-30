@@ -20,6 +20,9 @@ public class ibankMainMenu extends iBankMenu
 	private JLabel lbAccount;
 	private JLabel lbUser;
 	private JLabel lbOperator;
+	private JLabel lbDeposit;
+	private JLabel lbDraw;
+	private JLabel lbTransfer;
 
 
 	public ibankMainMenu()
@@ -32,12 +35,19 @@ public class ibankMainMenu extends iBankMenu
 		lbUser = CreateLable(" 2. 用户操作");
 		lbAccount = CreateLable(" 3. 账户操作");
 		lbOperator = CreateLable(" 5. 操作员操作");
+		lbDeposit = CreateLable(" 6. 存款");
+		lbDraw = CreateLable(" 7. 取款");
+		lbTransfer = CreateLable(" 8. 转账");
+			
 
 
 		AddMenuItem(lbDataSync);
 		AddMenuItem(lbUser);
 		AddMenuItem(lbAccount);
 		AddMenuItem(lbOperator);
+		AddMenuItem(lbDeposit);
+		AddMenuItem(lbDraw);
+		AddMenuItem(lbTransfer);	
 
 
 		AddMenuItem(lbExit);
@@ -75,7 +85,17 @@ public class ibankMainMenu extends iBankMenu
 		{
 			OperatorMenu operatorMenu = new OperatorMenu(this);
 			OpenMenuWindow(operatorMenu);
-		} else if (menuItem.equals("90"))
+		}
+		else if(menuItem.equals("6")){
+			
+		}
+		else if(menuItem.equals("7")){
+			
+		}
+		else if(menuItem.equals("8")){
+			
+		}
+		else if (menuItem.equals("90"))
 		{
 			ibankapi.Release();
 			System.exit(0);

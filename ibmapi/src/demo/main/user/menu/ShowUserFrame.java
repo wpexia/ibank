@@ -19,6 +19,9 @@ public class ShowUserFrame extends iBankGui{
 	private JTextField textName1;
 	private JTextField textName2;
 	private JTextField textCustomerId;
+	private JTextField textBirth;
+	private JTextField textAddress;
+	private JTextField textConnect;
 	private HashMap<String, String>mData;
 
 	public ShowUserFrame(JFrame parent, HashMap<String, String>data) {
@@ -35,6 +38,9 @@ public class ShowUserFrame extends iBankGui{
 		JLabel lbAge = CreateLable("年龄");
 		JLabel lbName1 = CreateLable("姓名");
 		JLabel lbName2 = CreateLable("曾用名");
+		JLabel lbBirth = CreateLable("出生年月");
+		JLabel lbAddress = CreateLable("地址");
+		JLabel lbConnec = CreateLable("联系方式");
 
 		textIdType = new JTextField();
 		textIdType.setColumns(20);
@@ -60,6 +66,18 @@ public class ShowUserFrame extends iBankGui{
 		textName2 = new JTextField();
 		textName2.setColumns(15);
 		textName2.setEditable(false);
+		
+		textBirth = new JTextField();
+		textBirth.setColumns(15);
+		textBirth.setEditable(false);
+		
+		textAddress = new JTextField();
+		textAddress.setColumns(15);
+		textAddress.setEditable(false);
+		
+		textConnect = new JTextField();
+		textConnect.setColumns(15);
+		textConnect.setEditable(false);
 
 		lbTitle.setText("编辑用户");
 		btnOK.setText("操作");
@@ -70,6 +88,9 @@ public class ShowUserFrame extends iBankGui{
 		SetFont(textGender);
 		SetFont(textName1);
 		SetFont(textName2);
+		SetFont(textConnect);
+		SetFont(textBirth);
+		SetFont(textAddress);
 		
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
@@ -79,7 +100,7 @@ public class ShowUserFrame extends iBankGui{
 		AddInputComponent(lbCustomerID, 0, 0, 8, 1);
 		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
 		textCustomerId.setText(data.get("CUSTID"));
-		AddInputComponent(btnOK, 0, 7, 8, 1);
+		
 		AddInputComponent(lbIdType, 0, 1, 8, 1);
 		AddInputComponent(textIdType, 8, 1, GridBagConstraints.RELATIVE, 1);
 		textIdType.setText(data.get("IDTYPE"));
@@ -98,6 +119,16 @@ public class ShowUserFrame extends iBankGui{
 		AddInputComponent(lbName2, 0, 6, 8, 1);
 		AddInputComponent(textName2, 8, 6, GridBagConstraints.RELATIVE, 1);
 		textName2.setText(data.get("NAME2"));
+		AddInputComponent(lbBirth, 0, 7, 8, 1);
+		AddInputComponent(textBirth, 8, 7, GridBagConstraints.RELATIVE, 1);
+		textBirth.setText(data.get("BIRTH"));
+		AddInputComponent(lbAddress, 0, 8, 8, 1);
+		AddInputComponent(textAddress, 8, 8, GridBagConstraints.RELATIVE, 1);
+		textAddress.setText(data.get("ADDRES"));
+		AddInputComponent(lbConnec, 0, 9, 8, 1);
+		AddInputComponent(textConnect, 8, 9, GridBagConstraints.RELATIVE, 1);
+		textConnect.setText(data.get("CONNEC"));
+		AddInputComponent(btnOK, 0, 10, 8, 1);
 	}
 	
 	protected void TransactionAction(){
