@@ -35,7 +35,7 @@ public class ShowAccountsMenu extends iBankMenu {
 			returnMain();
 		}
 		else {
-			HashMap<String, String>mapDetail = new HashMap<>();
+			HashMap<String, String>mapDetail = new HashMap<String, String>();
 			mapDetail.put("CUSTID", data.get("CUSTID"));
 /*****************这部分是自己编的数据**************/
 			mapDetail.put("ACCTNO", "A123001");

@@ -19,7 +19,7 @@ public class DeleteOperatorFrame extends iBankGui
 		JLabel  lbConfirm = CreateLable("确定删除？");
 
 		lbTitle.setText("删除操作员");
-		btnOK.setText("编辑");
+		btnOK.setText("删除");
 		btnOK.addKeyListener(keyListener);
 
 		AddInputComponent(lbConfirm, 0, 0, 8, 1);

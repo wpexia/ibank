@@ -1,5 +1,6 @@
 package demo.main;
 
+import demo.main.organization.OrganizationMenu;
 import gui.iBankMenu;
 
 import javax.swing.*;
@@ -20,7 +21,7 @@ public class ibankMainMenu extends iBankMenu
 	private JLabel lbAccount;
 	private JLabel lbUser;
 	private JLabel lbOperator;
-
+	private JLabel lbOrganization;
 
 	public ibankMainMenu()
 	{
@@ -31,12 +32,14 @@ public class ibankMainMenu extends iBankMenu
 		lbDataSync = CreateLable(" 1. 数据同步");
 		lbUser = CreateLable(" 2. 用户操作");
 		lbAccount = CreateLable(" 3. 账户操作");
+		lbOrganization = CreateLable(" 4. 机构操作");
 		lbOperator = CreateLable(" 5. 操作员操作");
 
 
 		AddMenuItem(lbDataSync);
 		AddMenuItem(lbUser);
 		AddMenuItem(lbAccount);
+		AddMenuItem(lbOrganization);
 		AddMenuItem(lbOperator);
 
 
@@ -70,7 +73,8 @@ public class ibankMainMenu extends iBankMenu
 			OpenMenuWindow(accountMenu);
 		} else if (menuItem.equals("4"))
 		{
-
+			OrganizationMenu organizationMenu = new OrganizationMenu(this);
+			OpenMenuWindow(organizationMenu);
 		} else if (menuItem.equals("5"))
 		{
 			OperatorMenu operatorMenu = new OperatorMenu(this);

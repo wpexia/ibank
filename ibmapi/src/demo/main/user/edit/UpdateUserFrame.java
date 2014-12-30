@@ -42,27 +42,34 @@ public class UpdateUserFrame extends iBankGui{
 		for (int i = 0; i < idTypes.length; ++i) {
 			comboIdType.addItem(idTypes[i]);
 		}
+		comboIdType.addKeyListener(keyListener);
 
 		textIdNumber = new JTextField();
 		textIdNumber.setColumns(15);
+		textIdNumber.addKeyListener(keyListener);
 
 		String[] genders = {"男", "女"};
 		comboGender = new JComboBox<String>();
 		for (int i = 0; i < genders.length; ++i) {
 			comboGender.addItem(genders[i]);
 		}
+		comboGender.addKeyListener(keyListener);
 
 		textAge = new JTextField();
 		textAge.setColumns(15);
+		textAge.addKeyListener(keyListener);
 
 		textName1 = new JTextField();
 		textName1.setColumns(15);
+		textName1.addKeyListener(keyListener);
 
 		textName2 = new JTextField();
 		textName2.setColumns(15);
+		textName2.addKeyListener(keyListener);
 
 		lbTitle.setText("修改用户");
 		btnOK.setText("修改");
+		btnOK.addKeyListener(keyListener);
 
 		SetFont(textIdNumber);
 		SetFont(textAge);
