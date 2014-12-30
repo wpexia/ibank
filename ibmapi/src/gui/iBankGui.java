@@ -44,11 +44,9 @@ public class iBankGui extends JFrame
 	
 	protected JButton btnOK;
 	
-	protected KeyboardFocusManager manager;
-	protected KeyEventPostProcessor postProcessor;
 	public KeyListener keyListener;
-	protected boolean listenFlag = false;
-	
+
+
 	public iBankGui(JFrame parent)
 	{
 		parentFrame =  parent;
@@ -168,14 +166,21 @@ public class iBankGui extends JFrame
 			@Override
 			public void keyTyped(KeyEvent e)
 			{
-				if(!listenFlag)
-					myAddKeylistener();
+
 			}
 
 			@Override
 			public void keyPressed(KeyEvent e)
 			{
-
+				System.out.println(e.getKeyCode());
+				if (KeyEvent.VK_ESCAPE == e.getKeyCode())
+				{
+					returnMain();
+				}
+				else if(KeyEvent.VK_ENTER == e.getKeyCode())
+				{
+					TransactionAction();
+				}
 			}
 
 			@Override
@@ -201,47 +206,15 @@ public class iBankGui extends JFrame
 	
 	protected void returnMain()
 	{
-		if(listenFlag)
-		{
-			manager.removeKeyEventPostProcessor(postProcessor);
-			listenFlag = false;
-		}
 		dispose();
 		setVisible(false);
 		parentFrame.setVisible(true);
 		parentFrame.pack();
 	}
 
-	protected void myAddKeylistener()
-	{
-		manager = KeyboardFocusManager.getCurrentKeyboardFocusManager();
-		listenFlag = true;
-		manager.addKeyEventPostProcessor(postProcessor = new KeyEventPostProcessor()
-				{
-					@Override
-					public boolean postProcessKeyEvent(KeyEvent e)
-					{
-						if (KeyEvent.VK_ESCAPE == e.getKeyCode())
-						{
-							returnMain();
-						}
-						else if(KeyEvent.VK_ENTER == e.getKeyCode())
-						{
-							TransactionAction();
-						}
-						return true;
-					}
-				}
-		);
-	}
 
 	protected void TransactionAction()
 	{
-		if(listenFlag)
-		{
-			manager.removeKeyEventPostProcessor(postProcessor);
-			listenFlag = false;
-		}
 		return;
 	}
 	
