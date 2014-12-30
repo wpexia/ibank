@@ -1,6 +1,8 @@
 package demo.main.organization.menu;
 
 
+import demo.main.organization.menu.edit.DeleteOrganizationFrame;
+import demo.main.organization.menu.edit.UpdateOrganizationFrame;
 import gui.iBankMenu;
 
 import javax.swing.*;
@@ -40,11 +42,13 @@ public class ModifyOrganizationMenu extends iBankMenu
 		}
 		else if (menuItem.equals("1"))
 		{
-
+			DeleteOrganizationFrame deleteOrganizationFrame = new DeleteOrganizationFrame(this,mData);
+			OpenTransWindow(deleteOrganizationFrame);
 		}
 		else if (menuItem.equals("2"))
 		{
-
+			UpdateOrganizationFrame updateOrganizationFrame = new UpdateOrganizationFrame(this,mData);
+			OpenTransWindow(updateOrganizationFrame);
 		}
 		else if (menuItem.equals("90")){
 			returnMain();
