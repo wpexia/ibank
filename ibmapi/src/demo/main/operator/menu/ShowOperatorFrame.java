@@ -97,7 +97,7 @@ public class ShowOperatorFrame extends iBankGui
 		AddInputComponent(textOrgId, 8, 1, GridBagConstraints.RELATIVE, 1);
 		textOrgId.setText("");
 		AddInputComponent(lbName, 0, 2, 8, 1);
-		AddInputComponent(textOrgId, 8, 2, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(textName, 8, 2, GridBagConstraints.RELATIVE, 1);
 		textOrgId.setText("");
 		AddInputComponent(lbGender, 0, 3, 8, 1);
 		AddInputComponent(textGender, 8, 3, GridBagConstraints.RELATIVE, 1);

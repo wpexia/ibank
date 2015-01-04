@@ -92,7 +92,7 @@ public class AddOperatorFrame extends iBankGui
 		AddInputComponent(lbOrgId, 0, 1, 8, 1);
 		AddInputComponent(textOrgId, 8, 1, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbName, 0, 2, 8, 1);
-		AddInputComponent(textOrgId, 8, 2, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(textName, 8, 2, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbGender, 0, 3, 8, 1);
 		AddInputComponent(comboBoxGender, 8, 3, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbConnec, 0, 4, 8, 1);
