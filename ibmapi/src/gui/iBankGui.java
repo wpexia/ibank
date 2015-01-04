@@ -79,15 +79,26 @@ public class iBankGui extends JFrame
 		
 		contentPane.add(headPane,    BorderLayout.NORTH);	
 		contentPane.add(InOutPane,   BorderLayout.CENTER);
-		contentPane.add(statusPane,  BorderLayout.SOUTH);	
-		
-		GridLayout  glInOut = new GridLayout(2, 1);
+		contentPane.add(statusPane,  BorderLayout.SOUTH);
+
+		GridBagLayout  glInOut = new GridBagLayout();
+		GridBagConstraints s = new GridBagConstraints();
+		s.fill = GridBagConstraints.BOTH;
 		InOutPane.setLayout(glInOut);
-		
+
+
+		s.gridwidth = 0;
+		s.weightx = 0;
+		s.gridwidth = 0;
+		glInOut.setConstraints(inputPane, s);
+		s.gridwidth = 0;
+		s.weightx = 0;
+		s.gridwidth = 0;
+		glInOut.setConstraints(outputPane, s);
 		InOutPane.add(inputPane);
 		InOutPane.add(outputPane);
-		
-		
+
+
 		// input panel
 		btnOK  = new JButton("ReplaceMe");
 		SetFont(btnOK);
@@ -135,6 +146,8 @@ public class iBankGui extends JFrame
 		taStatus.setModel(dlmStatus);
 		taStatus.setBackground(Color.black);
 		taStatus.setForeground(Color.green);
+		scrollStatus.addKeyListener(keyListener);
+		taStatus.addKeyListener(keyListener);
 		
 		//statusPane.add(scrollStatus);
 		

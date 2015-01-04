@@ -49,6 +49,7 @@ public class UpdateUserFrame extends iBankGui{
 		for (int i = 0; i < idTypes.length; ++i) {
 			comboIdType.addItem(idTypes[i]);
 		}
+		comboIdType.addKeyListener(keyListener);
 
 		textIdNumber = new JTextField();
 		textIdNumber.setColumns(15);

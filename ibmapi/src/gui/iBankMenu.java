@@ -264,8 +264,8 @@ public class iBankMenu extends JFrame
 		}
 		dispose();
 		setVisible(false);
-		//if(this.parentFrame != null)
-			this.parentFrame.setVisible(true);
+		parentFrame.setVisible(true);
+		parentFrame.pack();
 	}
 
 	private void addEsc(){

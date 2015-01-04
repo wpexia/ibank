@@ -103,13 +103,28 @@ public class ShowUserFrame extends iBankGui{
 		
 		AddInputComponent(lbIdType, 0, 1, 8, 1);
 		AddInputComponent(textIdType, 8, 1, GridBagConstraints.RELATIVE, 1);
-		textIdType.setText(data.get("IDTYPE"));
+		String type = "";
+		switch (data.get("IDTYPE")) {
+		case "A":
+			type = "身份证";
+			break;
+		case "B":
+			type = "军官证";
+			break;
+		case "C":
+			type = "护照";
+			break;
+		default:
+			break;
+		}
+		textIdType.setText(type);
 		AddInputComponent(lbIdNumber, 0, 2, 8, 1);
 		AddInputComponent(textIdNumber, 8, 2, GridBagConstraints.RELATIVE, 1);
 		textIdNumber.setText(data.get("IDNO"));
 		AddInputComponent(lbGender, 0, 3, 8, 1);
 		AddInputComponent(textGender, 8, 3, GridBagConstraints.RELATIVE, 1);
-		textGender.setText(data.get("GENDER"));
+		String gender = (Integer.parseInt(data.get("GENDER")) == 0)?"男":"女";
+		textGender.setText(gender);
 		AddInputComponent(lbAge, 0, 4, 8, 1);
 		AddInputComponent(textAge, 8, 4, GridBagConstraints.RELATIVE, 1);
 		textAge.setText(data.get("AGE"));

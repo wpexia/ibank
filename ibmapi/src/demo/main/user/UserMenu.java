@@ -17,9 +17,6 @@ public class UserMenu extends iBankMenu
 	{
 		super(parent);
 
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-
-
 		setTitle("User Menu");
 		
 
@@ -51,11 +48,9 @@ public class UserMenu extends iBankMenu
 		} else if (menuItem.equals("90"))
 		{
 			returnMain();
-		} else
-		{
-			JOptionPane.showMessageDialog(null, "无效的用户业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
+		} else{
+			JOptionPane.showMessageDialog(null, "请选择用户业务菜单功能", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-
 	}
 }

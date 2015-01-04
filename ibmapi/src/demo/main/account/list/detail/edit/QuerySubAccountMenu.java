@@ -41,13 +41,13 @@ public class QuerySubAccountMenu extends iBankMenu {
 			returnMain();
 		}
 		else {
-			HashMap<String, String>mapDetail = new HashMap<>();
+			HashMap<String, String>mapDetail = new HashMap<String, String>();
 			mapDetail.put("ACCTNO", data.get("ACCTNO"));
 /*****************这部分是自己编的数据**************/
 			mapDetail.put("SUBID", "789");
 			mapDetail.put("CRDATE", "20141230");
 			mapDetail.put("JISHU", "jishushishenme");
-			mapDetail.put("SATYPE", "1");
+			mapDetail.put("SATYPE", "2");
 			mapDetail.put("BALANCE", "233");
 			mapDetail.put("RATE", "100%");
 			mapDetail.put("EXTIME", "null");
