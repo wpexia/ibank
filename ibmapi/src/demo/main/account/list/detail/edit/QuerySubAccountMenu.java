@@ -47,7 +47,7 @@ public class QuerySubAccountMenu extends iBankMenu {
 			mapDetail.put("SUBID", "789");
 			mapDetail.put("CRDATE", "20141230");
 			mapDetail.put("JISHU", "jishushishenme");
-			mapDetail.put("SATYPE", "1");
+			mapDetail.put("SATYPE", "2");
 			mapDetail.put("BALANCE", "233");
 			mapDetail.put("RATE", "100%");
 			mapDetail.put("EXTIME", "null");

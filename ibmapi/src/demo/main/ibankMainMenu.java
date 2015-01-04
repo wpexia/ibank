@@ -8,6 +8,9 @@ import javax.swing.*;
 import demo.main.operator.OperatorMenu;
 import demo.main.account.AccountMenu;
 import demo.main.dataSync.DataSyncFrame;
+import demo.main.deposit.DepositFrame;
+import demo.main.draw.DrawFrame;
+import demo.main.transfer.TransferFrame;
 import demo.main.user.AddUserFrame;
 import demo.main.user.QueryUserFrame;
 import demo.main.user.UserMenu;
@@ -21,6 +24,11 @@ public class ibankMainMenu extends iBankMenu
 	private JLabel lbAccount;
 	private JLabel lbUser;
 	private JLabel lbOperator;
+
+	private JLabel lbDeposit;
+	private JLabel lbDraw;
+	private JLabel lbTransfer;
+
 	private JLabel lbOrganization;
 
 	public ibankMainMenu()
@@ -34,6 +42,10 @@ public class ibankMainMenu extends iBankMenu
 		lbAccount = CreateLable(" 3. 账户操作");
 		lbOrganization = CreateLable(" 4. 机构操作");
 		lbOperator = CreateLable(" 5. 操作员操作");
+		lbDeposit = CreateLable(" 6. 存款");
+		lbDraw = CreateLable(" 7. 取款");
+		lbTransfer = CreateLable(" 8. 转账");
+			
 
 
 		AddMenuItem(lbDataSync);
@@ -41,6 +53,9 @@ public class ibankMainMenu extends iBankMenu
 		AddMenuItem(lbAccount);
 		AddMenuItem(lbOrganization);
 		AddMenuItem(lbOperator);
+		AddMenuItem(lbDeposit);
+		AddMenuItem(lbDraw);
+		AddMenuItem(lbTransfer);	
 
 
 		AddMenuItem(lbExit);
@@ -79,7 +94,20 @@ public class ibankMainMenu extends iBankMenu
 		{
 			OperatorMenu operatorMenu = new OperatorMenu(this);
 			OpenMenuWindow(operatorMenu);
-		} else if (menuItem.equals("90"))
+		}
+		else if(menuItem.equals("6")){
+			DepositFrame deposit = new DepositFrame(this);
+			OpenTransWindow(deposit);
+		}
+		else if(menuItem.equals("7")){
+			DrawFrame draw = new DrawFrame(this);
+			OpenTransWindow(draw);
+		}
+		else if(menuItem.equals("8")){
+			TransferFrame transfer = new TransferFrame(this);
+			OpenTransWindow(transfer);
+		}
+		else if (menuItem.equals("90"))
 		{
 			ibankapi.Release();
 			System.exit(0);

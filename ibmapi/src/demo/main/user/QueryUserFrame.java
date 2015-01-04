@@ -23,7 +23,9 @@ public final class QueryUserFrame extends iBankGui {
 
 
 		lbTitle.setText("查询用户");
+		lbTitle.addKeyListener(keyListener);
 		btnOK.setText("查询");
+		btnOK.addKeyListener(keyListener);
 
 		
 		JLabel lbCustomerID = CreateLable("用户ID");
@@ -74,6 +76,9 @@ public final class QueryUserFrame extends iBankGui {
 		data.put("AGE", Trans.GetResponseValue("AGE"));
 		data.put("NAME1", Trans.GetResponseValue("NAME1"));
 		data.put("NAME2", Trans.GetResponseValue("NAME2"));
+		data.put("BIRTH", Trans.GetResponseValue("BIRTH"));
+		data.put("ADDRES", Trans.GetResponseValue("ADDRES"));
+		data.put("CONNEC", Trans.GetResponseValue("CONNEC"));
 
 
 		ShowUserFrame showUser = new ShowUserFrame(this, data);

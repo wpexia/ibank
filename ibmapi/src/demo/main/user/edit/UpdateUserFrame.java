@@ -23,7 +23,10 @@ public class UpdateUserFrame extends iBankGui{
 	private JTextField textName1;
 	private JTextField textName2;
 	private JTextField textCustomerId;
-	private JTextField textNewCustomerId;
+	private JTextField textBirth;
+	private JTextField textAddress;
+	private JTextField textConnect;
+	//private JTextField textNewCustomerId;
 
 	public UpdateUserFrame(JFrame parent, HashMap<String, String> mData) {
 		super(parent);
@@ -36,9 +39,13 @@ public class UpdateUserFrame extends iBankGui{
 		JLabel lbAge = CreateLable("年龄");
 		JLabel lbName1 = CreateLable("姓名");
 		JLabel lbName2 = CreateLable("曾用名");
+		JLabel lbBirth = CreateLable("出生年月");
+		JLabel lbAddress = CreateLable("地址");
+		JLabel lbConnec = CreateLable("联系方式");
 
 		String[] idTypes = {"身份证", "军官证", "护照"};
 		comboIdType = new JComboBox<String>();
+		comboIdType.addKeyListener(keyListener);
 		for (int i = 0; i < idTypes.length; ++i) {
 			comboIdType.addItem(idTypes[i]);
 		}
@@ -66,8 +73,21 @@ public class UpdateUserFrame extends iBankGui{
 		textName2 = new JTextField();
 		textName2.setColumns(15);
 		textName2.addKeyListener(keyListener);
+		
+		textBirth = new JTextField();
+		textBirth.setColumns(15);
+		textBirth.addKeyListener(keyListener);
+		
+		textAddress = new JTextField();
+		textAddress.setColumns(15);
+		textAddress.addKeyListener(keyListener);
+		
+		textConnect = new JTextField();
+		textConnect.setColumns(15);
+		textConnect.addKeyListener(keyListener);
 
 		lbTitle.setText("修改用户");
+		lbTitle.addKeyListener(keyListener);
 		btnOK.setText("修改");
 		btnOK.addKeyListener(keyListener);
 
@@ -75,10 +95,13 @@ public class UpdateUserFrame extends iBankGui{
 		SetFont(textAge);
 		SetFont(textName1);
 		SetFont(textName2);
+		SetFont(textConnect);
+		SetFont(textBirth);
+		SetFont(textAddress);
+		
 
 		AddInputComponent(lbIdType, 0, 1, 8, 1);
 		AddInputComponent(comboIdType, 8, 1, GridBagConstraints.RELATIVE, 1);
-		System.out.println("IDTYPE:   " + mData.get("IDTYPE"));
 		comboIdType.setSelectedIndex(mData.get("IDTYPE").charAt(0)-'A');
 		AddInputComponent(lbIdNumber, 0, 2, 8, 1);
 		AddInputComponent(textIdNumber, 8, 2, GridBagConstraints.RELATIVE, 1);
@@ -95,23 +118,27 @@ public class UpdateUserFrame extends iBankGui{
 		AddInputComponent(lbName2, 0, 6, 8, 1);
 		AddInputComponent(textName2, 8, 6, GridBagConstraints.RELATIVE, 1);
 		textName2.setText(mData.get("NAME2"));
-		AddInputComponent(btnOK, 0, 7, 8, 1);
+		AddInputComponent(lbBirth, 0, 7, 8, 1);
+		AddInputComponent(textBirth, 8, 7, GridBagConstraints.RELATIVE, 1);
+		textBirth.setText(mData.get("BIRTH"));
+		AddInputComponent(lbAddress, 0, 8, 8, 1);
+		AddInputComponent(textAddress, 8, 8, GridBagConstraints.RELATIVE, 1);
+		textAddress.setText(mData.get("ADDRES"));
+		AddInputComponent(lbConnec, 0, 9, 8, 1);
+		AddInputComponent(textConnect, 8, 9, GridBagConstraints.RELATIVE, 1);
+		textConnect.setText(mData.get("CONNEC"));
+		AddInputComponent(btnOK, 0, 10, 8, 1);
 
 
 		JLabel lbCustomerID = CreateLable("用户ID");
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
+		textCustomerId.setEditable(false);
+		textCustomerId.addKeyListener(keyListener);
 
 		AddInputComponent(lbCustomerID, 0, 0, 8, 1);
 		AddInputComponent(textCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
 		textCustomerId.setText(mData.get("CUSTID"));
-		
-		JLabel lbNewCustomerID = CreateLable("修改后用户ID");
-		textNewCustomerId = new JTextField();
-		textNewCustomerId.setColumns(15);
-
-		AddOutputComponent(lbNewCustomerID, 0, 0, 8, 1);
-		AddOutputComponent(textNewCustomerId, 8, 0, GridBagConstraints.RELATIVE, 1);
 
 	}
 
@@ -146,6 +173,9 @@ public class UpdateUserFrame extends iBankGui{
 		data.put("AGE", textAge.getText());
 		data.put("NAME1", textName1.getText());
 		data.put("NAME2", textName2.getText());
+		data.put("BIRTH", textBirth.getText());
+		data.put("ADDRES", textAddress.getText());
+		data.put("CONNEC", textConnect.getText());
 
 		bRet = Trans.Init();
 
@@ -161,7 +191,6 @@ public class UpdateUserFrame extends iBankGui{
 		}
 
 		String customerID = Trans.GetResponseValue("CUSTID");
-		textNewCustomerId.setText(customerID);
 
 		ShowStatusMessage(Trans.GetStatusMsg());
 
