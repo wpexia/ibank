@@ -1,9 +1,11 @@
 package demo.main.organization;
 
 import gui.iBankGui;
+import ibankapi.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 
 public class AddOrganizationFrame extends iBankGui
 {
@@ -88,4 +90,56 @@ public class AddOrganizationFrame extends iBankGui
 		AddInputComponent(btnOK, 0, 6, 8, 1);
 	}
 
+	protected void TransactionAction() {
+		super.TransactionAction();
+
+		if (textOrgId.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入机构ID", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (textCode.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入代号", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (textAddress.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入地址", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (textConnec.getText().isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入联系方式", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		boolean bRet;
+		HashMap<String, String> data = new HashMap<String, String>();
+
+		Transaction Trans = new Transaction("100068");
+
+		data.put("ORGID",textOrgId.getText());
+		data.put("CODE", textCode.getText());
+		data.put("ADDRES",textAddress.getText());
+		data.put("TYPE",Integer.toString(comboBoxType.getSelectedIndex()));
+		data.put("AUTH",Integer.toString(comboBoxAuth.getSelectedIndex()));
+		data.put("CONNEC",textConnec.getText());
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		Trans.Release();
+	}
 }

@@ -37,43 +37,51 @@ public class ShowOperatorFrame extends iBankGui
 
 		textOperatorId = new JTextField();
 		textOperatorId.setColumns(15);
-		textOperatorId.setEditable(false);
 		textOperatorId.addKeyListener(keyListener);
+		textOperatorId.setText(data.get("OPID"));
+		textOperatorId.setEditable(false);
 
 		textName = new JTextField();
 		textName.setColumns(15);
-		textName.setEditable(false);
 		textName.addKeyListener(keyListener);
+		textName.setText(data.get("NAME1"));
+		textName.setEditable(false);
 
 		textGender = new JTextField();
 		textGender.setColumns(15);
-		textGender.setEditable(false);
 		textGender.addKeyListener(keyListener);
+		textGender.setText(data.get("GENDER"));
+		textGender.setEditable(false);
 
 		textOrgId = new JTextField();
 		textOrgId.setColumns(15);
-		textOrgId.setEditable(false);
 		textOrgId.addKeyListener(keyListener);
+		textOrgId.setText(data.get("ORGID"));
+		textOrgId.setEditable(false);
 
 		textPassword = new JTextField();
 		textPassword.setColumns(15);
-		textPassword.setEditable(false);
 		textPassword.addKeyListener(keyListener);
+		textPassword.setText(data.get("PASSWD"));
+		textPassword.setEditable(false);
 
 		textConnec = new JTextField();
 		textConnec.setColumns(15);
-		textConnec.setEditable(false);
 		textConnec.addKeyListener(keyListener);
+		textConnec.setText(data.get("CONNEC"));
+		textConnec.setEditable(false);
 
 		textType = new JTextField();
 		textType.setColumns(15);
-		textType.setEditable(false);
 		textType.addKeyListener(keyListener);
+		textType.setText(data.get("TYPE"));
+		textType.setEditable(false);
 
 		textAuth = new JTextField();
 		textAuth.setColumns(15);
-		textAuth.setEditable(false);
 		textAuth.addKeyListener(keyListener);
+		textAuth.setText(data.get("AUTH"));
+		textAuth.setEditable(false);
 
 
 		lbTitle.setText("编辑操作员");
@@ -92,28 +100,20 @@ public class ShowOperatorFrame extends iBankGui
 
 		AddInputComponent(lbOperator, 0, 0, 8, 1);
 		AddInputComponent(textOperatorId, 8, 0, GridBagConstraints.RELATIVE, 1);
-		textOperatorId.setText(data.get(""));
 		AddInputComponent(lbOrgId, 0, 1, 8, 1);
 		AddInputComponent(textOrgId, 8, 1, GridBagConstraints.RELATIVE, 1);
-		textOrgId.setText("");
 		AddInputComponent(lbName, 0, 2, 8, 1);
-		AddInputComponent(textOrgId, 8, 2, GridBagConstraints.RELATIVE, 1);
-		textOrgId.setText("");
+		AddInputComponent(textName, 8, 2, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbGender, 0, 3, 8, 1);
 		AddInputComponent(textGender, 8, 3, GridBagConstraints.RELATIVE, 1);
-		textGender.setText("");
 		AddInputComponent(lbConnec, 0, 4, 8, 1);
 		AddInputComponent(textConnec, 8, 4, GridBagConstraints.RELATIVE, 1);
-		textConnec.setText("");
 		AddInputComponent(lbPassword, 0, 5, 8, 1);
 		AddInputComponent(textPassword, 8, 5, GridBagConstraints.RELATIVE, 1);
-		textPassword.setText("");
 		AddInputComponent(lbAuth, 0, 6, 8, 1);
 		AddInputComponent(textAuth, 8, 6, GridBagConstraints.RELATIVE, 1);
-		textAuth.setText("");
 		AddInputComponent(lbType, 0, 7, 8, 1);
 		AddInputComponent(textType, 8, 7, GridBagConstraints.RELATIVE, 1);
-		textType.setText("");
 		AddInputComponent(btnOK, 0, 8, 8, 1);
 	}
 

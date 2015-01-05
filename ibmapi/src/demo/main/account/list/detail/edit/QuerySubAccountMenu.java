@@ -23,7 +23,7 @@ public class QuerySubAccountMenu extends iBankMenu {
 		AddMenuItem(CreateLable("账户号：  " + data.get("ACCTNO")));
 		AddMenuItem(CreateLable("该账户的子账户信息如下"));
 		
-		for(int i = 0; i < data.size() - 1;i ++){
+		for(int i = 0; i < data.size() - 6;i ++){
 			JLabel lbAccount = CreateLable((i + 1) + " : " + data.get(i + ""));
 			AddMenuItem(lbAccount);
 		}
