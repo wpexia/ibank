@@ -118,7 +118,6 @@ public class ibankguidemo extends iBankLogon
 		String[] tmp = {"NAME1", "GENDER", "PASSWD", "CONNEC", "TYPE", "AUTH"};
 		for(String x: tmp){
 			data.put(x, Trans.GetResponseValue(x));
-			System.out.println(x + "  " +  Trans.GetResponseValue(x));
 		}
 		Trans.Release();
 

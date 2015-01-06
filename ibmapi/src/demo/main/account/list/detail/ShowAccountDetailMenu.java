@@ -108,7 +108,7 @@ public class ShowAccountDetailMenu extends iBankMenu {
 
 		int MAXSUB = Integer.parseInt(Trans.GetResponseValue("MAXSUB"));
 		Trans.Release();
-
+		data.put("num",Integer.toString(MAXSUB));
 		for (int i=1; i<= MAXSUB;i++)
 		{
 			Trans = new Transaction("100088");

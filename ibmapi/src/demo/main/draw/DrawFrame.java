@@ -94,11 +94,62 @@ public class DrawFrame extends iBankGui{
 
 		if(!Trans.GetStatus())
 		{
-
+			JOptionPane.showMessageDialog(null, "活期账户金额不足", "错误", JOptionPane.ERROR_MESSAGE);
+			querySubAcc(data);
+			QuerySubAccountMenu querySubAcc = new QuerySubAccountMenu(this, data);
+			OpenTransWindow(querySubAcc);
 		}
 		ShowStatusMessage(Trans.GetStatusMsg());
 
 		Trans.Release();
+	}
+	private void querySubAcc(HashMap<String, String> data)
+	{
+		boolean bRet;
+		HashMap<String, String>mapDetail = new HashMap<String, String>();
+		Transaction Trans = new Transaction("100058");
+
+		mapDetail.put("ACCTNO",data.get("ACCTNO"));
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			return;
+		}
+
+		bRet = Trans.SendMessage(mapDetail);
+		if(!bRet){
+			return;
+		}
+
+		if(!Trans.GetStatus())
+			return;
+
+
+		int MAXSUB = Integer.parseInt(Trans.GetResponseValue("MAXSUB"));
+		Trans.Release();
+
+		data.put("num",Integer.toString(MAXSUB));
+		for (int i=1; i<= MAXSUB;i++)
+		{
+			Trans = new Transaction("100088");
+			mapDetail.put("SUBID",String.format("%04d",i));
+			bRet = Trans.Init();
+
+			if (!bRet) {
+				continue;
+			}
+
+			bRet = Trans.SendMessage(mapDetail);
+			if(!bRet){
+				continue;
+			}
+
+			if(!Trans.GetStatus())
+				continue;
+
+			data.put(Integer.toString(i),Trans.GetResponseValue("SUBID"));
+		}
 	}
 
 }

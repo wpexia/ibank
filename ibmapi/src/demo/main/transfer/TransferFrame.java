@@ -11,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 import demo.main.account.list.detail.edit.QuerySubAccountMenu;
+import ibankapi.Transaction;
 
 public class TransferFrame extends iBankGui {
 
@@ -65,8 +66,6 @@ public class TransferFrame extends iBankGui {
 		AddInputComponent(textAmount, 8, 2, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(btnOK, 0, 3, 8, 1);
 		
-		AddOutputComponent(lbBalance, 0, 0, 8, 1);
-		AddOutputComponent(textBalance, 8, 0, GridBagConstraints.RELATIVE, 1);
 	}
 	
 	protected void TransactionAction() {
@@ -88,43 +87,107 @@ public class TransferFrame extends iBankGui {
 
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
-		
-		if(true){//余额不足
-			JOptionPane.showMessageDialog(null, "转出账户活期余额不足，需从定期账户转", "错误", JOptionPane.ERROR_MESSAGE);
-			//根据账户号找子账户列表，存到一个map里
-			QuerySubAccountMenu querySubAccount = new QuerySubAccountMenu(this, data);
-			OpenTransWindow(querySubAccount);
+		Transaction Trans = new Transaction("100053");
+
+		data.put("ACCTNO",textFromAccountNo.getText());
+		data.put("SUBID","0001");
+		data.put("AMOUNT", String.format("%012.0f", Double.parseDouble(textAmount.getText()) * 1000));
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
 		}
-//		Transaction Trans = new Transaction("100099");
-//
-//		data.put("IDTYPE", "" + (char) ('A' + comboIdType.getSelectedIndex()));
-//		data.put("IDNO", textIdNumber.getText());
-//		data.put("GENDER", Integer.toString(comboGender.getSelectedIndex()));
-//		data.put("AGE", getAge(textBirth.getText()));
-//		data.put("NAME1", textName1.getText());
-//		data.put("NAME2", textName2.getText());
-//		data.put("BIRTH", textBirth.getText());
-//		data.put("ADDRES", textAddress.getText());
-//		data.put("CONNEC", textConnect.getText());
-//
-//		bRet = Trans.Init();
-//
-//		if (!bRet) {
-//			ShowStatusMessage(Trans.GetStatusMsg());
-//			return;
-//		}
-//
-//		bRet = Trans.SendMessage(data);
-//		if (!bRet) {
-//			ShowStatusMessage(Trans.GetStatusMsg());
-//			return;
-//		}
-//
-//		String customerID = Trans.GetResponseValue("CUSTID");
-//		textCustomerId.setText(customerID);
-//
-//		ShowStatusMessage(Trans.GetStatusMsg());
-//
-//		Trans.Release();
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		if(!Trans.GetStatus())
+		{
+			JOptionPane.showMessageDialog(null, "活期账户金额不足", "错误", JOptionPane.ERROR_MESSAGE);
+			querySubAcc(data);
+			QuerySubAccountMenu querySubAcc = new QuerySubAccountMenu(this, data);
+			OpenTransWindow(querySubAcc);
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		Trans.Release();
+
+
+
+		data = new HashMap<String, String>();
+		Trans = new Transaction("100054");
+
+		data.put("ACCTNO",textToAccountNo.getText());
+		data.put("SUBID","0001");
+		data.put("AMOUNT", String.format("%012.0f", Double.parseDouble(textAmount.getText()) * 1000));
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		Trans.Release();
+	}
+
+	private void querySubAcc(HashMap<String, String> data)
+	{
+		boolean bRet;
+		HashMap<String, String>mapDetail = new HashMap<String, String>();
+		Transaction Trans = new Transaction("100058");
+
+		mapDetail.put("ACCTNO",data.get("ACCTNO"));
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			return;
+		}
+
+		bRet = Trans.SendMessage(mapDetail);
+		if(!bRet){
+			return;
+		}
+
+		if(!Trans.GetStatus())
+			return;
+
+
+		int MAXSUB = Integer.parseInt(Trans.GetResponseValue("MAXSUB"));
+		Trans.Release();
+
+		data.put("num",Integer.toString(MAXSUB));
+		for (int i=1; i<= MAXSUB;i++)
+		{
+			Trans = new Transaction("100088");
+			mapDetail.put("SUBID",String.format("%04d",i));
+			bRet = Trans.Init();
+
+			if (!bRet) {
+				continue;
+			}
+
+			bRet = Trans.SendMessage(mapDetail);
+			if(!bRet){
+				continue;
+			}
+
+			if(!Trans.GetStatus())
+				continue;
+
+			data.put(Integer.toString(i),Trans.GetResponseValue("SUBID"));
+		}
 	}
 }

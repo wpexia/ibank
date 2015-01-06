@@ -282,13 +282,13 @@ public class AddAccountFrame extends iBankGui{
 		Trans = new Transaction("100090");
 
 		kdata.put("SUBID",MAXSUB);
-		kdata.put("CRDATE",new SimpleDateFormat("yyyymmdd").format(new Date()));
+		kdata.put("CRDATE",new SimpleDateFormat("yyyyMMdd").format(new Date()));
 		kdata.put("JISHU","000000000000");
 		kdata.put("SATYPE","1");
 		kdata.put("BALANC","000000000000");
 		kdata.put("RATE","000000000000");
 		kdata.put("EXTIME","");
-		kdata.put("OPRATE","");
+		kdata.put("OPRATE","1");
 
 
 		bRet = Trans.Init();

@@ -174,13 +174,13 @@ public class DepositFrame extends  iBankGui{
 		Trans = new Transaction("100090");
 
 		kdata.put("SUBID",MAXSUB);
-		kdata.put("CRDATE",new SimpleDateFormat("yyyymmdd").format(new Date()));
+		kdata.put("CRDATE",new SimpleDateFormat("yyyyMMdd").format(new Date()));
 		kdata.put("JISHU","000000000000");
 		kdata.put("SATYPE","2");
 		kdata.put("BALANC","000000000000");
 		kdata.put("RATE","000000000000");
-		kdata.put("EXTIME","");
-		kdata.put("OPRATE","");
+		kdata.put("EXTIME",Integer.toString(cbTime.getSelectedIndex()));
+		kdata.put("OPRATE","1");
 
 
 		bRet = Trans.Init();
@@ -220,6 +220,27 @@ public class DepositFrame extends  iBankGui{
 		Trans.Release();
 
 
+		HashMap<String, String> data = new HashMap<String, String>();
+		Trans = new Transaction("100054");
 
+		data.put("ACCTNO",ACCTNO);
+		data.put("SUBID",MAXSUB);
+		data.put("AMOUNT", String.format("%012.0f", Double.parseDouble(textAmount.getText()) * 1000));
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		Trans.Release();
 	}
 }
