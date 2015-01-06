@@ -63,6 +63,7 @@ public class ibankguidemo extends iBankLogon
 	
 	protected void LogonAction()
 	{
+		ibankapi.Init("1");
 		String orgID = textOrgID.getText();
 		String user  = username.getText();
 		char [] pass = password.getPassword();
@@ -85,45 +86,47 @@ public class ibankguidemo extends iBankLogon
 		
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
-		
-		Transaction trans = new Transaction("100063");
+
+		Transaction Trans = new Transaction("100063");
 		
 		data.put("ORGID", orgID);
 		data.put("OPID", user);
-		bRet = trans.Init();
-		
+
+		bRet = Trans.Init();
+
+
 		if(!bRet){
 			String retMsg = "";
-			for (int i = 0; i < trans.GetStatusMsg().length; ++i){
-				retMsg += trans.GetStatusMsg()[i];
+			for (int i = 0; i < Trans.GetStatusMsg().length; ++i){
+				retMsg += Trans.GetStatusMsg()[i];
 				retMsg += "\n";
 			}
 			JOptionPane.showMessageDialog(null, retMsg, "错误", JOptionPane.ERROR_MESSAGE);
-			return;	
+			return;
 		}
-		
-		bRet = trans.SendMessage(data);
-		if(!bRet){
+
+		bRet = Trans.SendMessage(data);
+		if(!bRet || !Trans.GetStatus()){
 			String retMsg = "";
-			for (int i = 0; i < trans.GetStatusMsg().length; ++i){
-				retMsg += trans.GetStatusMsg()[i];
+			for (int i = 0; i < Trans.GetStatusMsg().length; ++i){
+				retMsg += Trans.GetStatusMsg()[i];
 				retMsg += "\n";
 			}
 			JOptionPane.showMessageDialog(null, retMsg, "错误", JOptionPane.ERROR_MESSAGE);
-			return;	
+			return;
 		}
-		
-		String[] tmp = {"NAME", "GENDER", "PASWD", "CONNEC", "TYPE", "AUTH"};
+		String[] tmp = {"NAME1", "GENDER", "PASSWD", "CONNEC", "TYPE", "AUTH"};
 		for(String x: tmp){
-			data.put(x, trans.GetResponseValue(x));
+			data.put(x, Trans.GetResponseValue(x));
+			System.out.println(x + "  " +  Trans.GetResponseValue(x));
 		}
-		trans.Release();
-		
-		if(!(data.get("PASSWD").equals(pass.toString()))){
+		Trans.Release();
+
+		if(!(data.get("PASSWD").equals(String.copyValueOf(pass)))){
 			JOptionPane.showMessageDialog(null, "口令与用户名不匹配", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
-		
+
 		dispose();
 		ibankapi.Init(user);
 		if(data.get("TYPE").equals("1")){

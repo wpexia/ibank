@@ -276,7 +276,6 @@ public class AddAccountFrame extends iBankGui{
 		ShowStatusMessage(Trans.GetStatusMsg());
 		String MAXSUB = String.format("%04d", Integer.parseInt(Trans.GetResponseValue("MAXSUB")) + 1);
 		Trans.Release();
-		System.out.println("58");
 
 
 
@@ -306,7 +305,6 @@ public class AddAccountFrame extends iBankGui{
 		}
 		ShowStatusMessage(Trans.GetStatusMsg());
 		Trans.Release();
-		System.out.println("90");
 
 		Trans = new Transaction("100057");
 
@@ -328,7 +326,5 @@ public class AddAccountFrame extends iBankGui{
 		}
 		ShowStatusMessage(Trans.GetStatusMsg());
 		Trans.Release();
-		System.out.println("57");
 	}
-
 }

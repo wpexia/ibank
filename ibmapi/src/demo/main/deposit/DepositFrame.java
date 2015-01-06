@@ -3,6 +3,8 @@ package demo.main.deposit;
 import ibankapi.Transaction;
 
 import java.awt.GridBagConstraints;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JComboBox;
@@ -96,14 +98,24 @@ public class DepositFrame extends  iBankGui{
 			return;
 		}
 
+		if(cbType.getSelectedIndex() == 0)
+		{
+			live();
+			return;
+		}else{
+			noLive(textAccountNo.getText());
+		}
+
+	}
+
+	private void live(){
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
 		Transaction Trans = new Transaction("100054");
 
 		data.put("ACCTNO",textAccountNo.getText());
 		data.put("SUBID","0001");
-		data.put("MOUNT", String.format("%012.0lf", Double.parseDouble(textAmount.getText()) * 1000));
-
+		data.put("AMOUNT", String.format("%012.0f", Double.parseDouble(textAmount.getText()) * 1000));
 		bRet = Trans.Init();
 
 		if (!bRet) {
@@ -117,45 +129,86 @@ public class DepositFrame extends  iBankGui{
 			return;
 		}
 
-		
+		ShowStatusMessage(Trans.GetStatusMsg());
 
-		
-
-
-
-
-
-
-//
-//		data.put("IDTYPE", "" + (char) ('A' + comboIdType.getSelectedIndex()));
-//		data.put("IDNO", textIdNumber.getText());
-//		data.put("GENDER", Integer.toString(comboGender.getSelectedIndex()));
-//		data.put("AGE", getAge(textBirth.getText()));
-//		data.put("NAME1", textName1.getText());
-//		data.put("NAME2", textName2.getText());
-//		data.put("BIRTH", textBirth.getText());
-//		data.put("ADDRES", textAddress.getText());
-//		data.put("CONNEC", textConnect.getText());
-//
-//		bRet = Trans.Init();
-//
-//		if (!bRet) {
-//			ShowStatusMessage(Trans.GetStatusMsg());
-//			return;
-//		}
-//
-//		bRet = Trans.SendMessage(data);
-//		if (!bRet) {
-//			ShowStatusMessage(Trans.GetStatusMsg());
-//			return;
-//		}
-//
-//		String customerID = Trans.GetResponseValue("CUSTID");
-//		textCustomerId.setText(customerID);
-//
-//		ShowStatusMessage(Trans.GetStatusMsg());
-//
-//		Trans.Release();
+		Trans.Release();
 	}
 
+	private void noLive(String ACCTNO)
+	{
+		boolean bRet;
+		Transaction Trans = new Transaction("100058");
+		HashMap<String,String> kdata = new HashMap<>();
+
+		kdata.put("ACCTNO",ACCTNO);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		String MAXSUB = String.format("%04d", Integer.parseInt(Trans.GetResponseValue("MAXSUB")) + 1);
+		Trans.Release();
+
+
+
+		Trans = new Transaction("100090");
+
+		kdata.put("SUBID",MAXSUB);
+		kdata.put("CRDATE",new SimpleDateFormat("yyyymmdd").format(new Date()));
+		kdata.put("JISHU","000000000000");
+		kdata.put("SATYPE","2");
+		kdata.put("BALANC","000000000000");
+		kdata.put("RATE","000000000000");
+		kdata.put("EXTIME","");
+		kdata.put("OPRATE","");
+
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();
+
+		Trans = new Transaction("100057");
+
+		kdata.clear();
+		kdata.put("ACCTNO",ACCTNO);
+		kdata.put("MAXSUB",MAXSUB);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();
+
+
+
+	}
 }
