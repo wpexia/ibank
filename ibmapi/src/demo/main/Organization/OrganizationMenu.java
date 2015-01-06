@@ -16,7 +16,7 @@ public class OrganizationMenu extends iBankMenu
 		setTitle("Organization Menu");
 
 		lbAddOrg = CreateLable(" 1. 添加机构");
-		lbQueryOrg = CreateLable("2. 查询机构");
+		lbQueryOrg = CreateLable(" 2. 查询机构");
 
 		AddMenuItem(lbAddOrg);
 		AddMenuItem(lbQueryOrg);

@@ -14,6 +14,7 @@ import demo.main.account.list.detail.edit.UpdateAccPwd;
 import demo.main.account.list.detail.edit.UpdateAccountFrame;
 import gui.iBankGui;
 import gui.iBankMenu;
+import ibankapi.Transaction;
 
 public class ShowAccountDetailMenu extends iBankMenu {
 
@@ -24,6 +25,8 @@ public class ShowAccountDetailMenu extends iBankMenu {
 	private JTextField textCustomerId;
 	
 	private HashMap<String, String>data;
+
+
 	public ShowAccountDetailMenu(JFrame parent, HashMap<String, String>mData) {
 		super(parent);
 		data = mData;
@@ -70,13 +73,61 @@ public class ShowAccountDetailMenu extends iBankMenu {
 			OpenTransWindow(updatePwd);
 		}
 		else if(menuItem.equals("3")){
-			/*************************这里写通过账户号查询子账户*************************/
+			querySubAcc();
 			QuerySubAccountMenu querySubAcc = new QuerySubAccountMenu(this, data);
 			OpenMenuWindow(querySubAcc);
 		}
 		else if(menuItem.equals("4")){
 			DeleteAccountFrame deleteAccount = new DeleteAccountFrame(this, data);
 			OpenTransWindow(deleteAccount);
+		}
+	}
+
+	private void querySubAcc()
+	{
+		boolean bRet;
+		HashMap<String, String>mapDetail = new HashMap<String, String>();
+		Transaction Trans = new Transaction("100058");
+
+		mapDetail.put("ACCTNO",data.get("ACCTNO"));
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			return;
+		}
+
+		bRet = Trans.SendMessage(mapDetail);
+		if(!bRet){
+			return;
+		}
+
+		if(!Trans.GetStatus())
+			return;
+
+
+		int MAXSUB = Integer.parseInt(Trans.GetResponseValue("MAXSUB"));
+		Trans.Release();
+
+		for (int i=1; i<= MAXSUB;i++)
+		{
+			Trans = new Transaction("100088");
+			mapDetail.put("SUBID",String.format("%04d",i));
+			bRet = Trans.Init();
+
+			if (!bRet) {
+				continue;
+			}
+
+			bRet = Trans.SendMessage(mapDetail);
+			if(!bRet){
+				continue;
+			}
+
+			if(!Trans.GetStatus())
+				continue;
+
+			data.put(Integer.toString(i),Trans.GetResponseValue("SUBID"));
 		}
 	}
 	

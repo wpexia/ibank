@@ -3,6 +3,7 @@ package demo.main.operator;
 
 import demo.main.operator.menu.ShowOperatorFrame;
 import gui.iBankGui;
+import ibankapi.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,8 +63,38 @@ public class QueryOperatorFrame extends iBankGui
 			return;
 		}
 
+		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
 
+		Transaction Trans = new Transaction("100063");
+
+		data.put("ORGID",textOrgId.getText());
+		data.put("OPID",textOperatorId.getText());
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		if(!Trans.GetStatus())
+			return;
+
+		String[] tmp = {"NAME1","GENDER","PASSWD","CONNEC","TYPE","AUTH"};
+		for(String x : tmp)
+		{
+			data.put(x, Trans.GetResponseValue(x));
+		}
+
+		Trans.Release();
 
 		ShowOperatorFrame showOperatorFrame = new ShowOperatorFrame(this,data);
 		OpenTransWindow(showOperatorFrame);

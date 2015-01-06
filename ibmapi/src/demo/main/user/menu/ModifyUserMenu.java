@@ -14,6 +14,7 @@ import demo.main.account.detail.ShowAccountsMenu;
 import demo.main.user.edit.DeleteUserFrame;
 import demo.main.user.edit.UpdateUserFrame;
 import gui.iBankMenu;
+import ibankapi.Transaction;
 
 public class ModifyUserMenu extends iBankMenu{
 
@@ -65,7 +66,7 @@ public class ModifyUserMenu extends iBankMenu{
 			OpenTransWindow(updateUser);
 		}
 		else if(menuItem.equals("3")){
-/**************这边要写通过用户ID查找所有ACCOUNT的过程*****************/			
+			addAcc();
 			ShowAccountsMenu showAccounts = new ShowAccountsMenu(this, mData);
 			OpenMenuWindow(showAccounts);
 		}
@@ -78,7 +79,39 @@ public class ModifyUserMenu extends iBankMenu{
 		}
 		
 	}
+	private void addAcc()
+	{
+		boolean bRet;
+		HashMap<String, String> data = new HashMap<String, String>();
+		Transaction Trans = new Transaction("100056");
 
+		data.put("CUSTID",mData.get("CUSTID"));
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			return;
+		}
+		String CUSACC = Trans.GetResponseValue("CUSACC");
+		if(CUSACC == null)
+			return;
+		Trans.Release();
+
+		String[] ACCS = CUSACC.split(",");
+		int i = 0;
+		for(String c :ACCS)
+		{
+			if(c.equals("0")){
+				continue;
+			}
+			mData.put(Integer.toString(i),c);
+			i++;
+		}
+	}
 }
 
 

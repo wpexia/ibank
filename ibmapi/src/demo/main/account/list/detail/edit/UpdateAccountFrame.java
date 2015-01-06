@@ -34,18 +34,22 @@ public class UpdateAccountFrame extends iBankGui {
 		textAccountId.setColumns(15);
 		textAccountId.addKeyListener(keyListener);
 		textAccountId.setText(data.get("ACCTNO"));
+		textAccountId.setEditable(false);
 		
 		textCustomerId = new JTextField();
 		textCustomerId.setColumns(15);
 		textCustomerId.addKeyListener(keyListener);
+		textCustomerId.setText(data.get("CUSTID"));
 		
 		textDate = new JTextField();
 		textDate.setColumns(15);
 		textDate.addKeyListener(keyListener);
+		textDate.setText(data.get("ACDATE"));
 		
 		textOrganizationId = new JTextField();
 		textOrganizationId.setColumns(15);
 		textOrganizationId.addKeyListener(keyListener);
+		textOrganizationId.setText(data.get("ORGID"));
 		
 		lbTitle.setText("修改账户");
 		btnOK.setText("修改");
@@ -63,8 +67,7 @@ public class UpdateAccountFrame extends iBankGui {
 		AddInputComponent(textOrganizationId, 8, 2, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(btnOK, 0, 5, 8, 1);
 		
-		AddOutputComponent(lbAccountId, 0, 0, 8, 1);
-		AddOutputComponent(textAccountId, 8, 0, GridBagConstraints.RELATIVE, 1);
+
 	}
 	
 	protected void TransactionAction() {
@@ -88,13 +91,16 @@ public class UpdateAccountFrame extends iBankGui {
 		}
 		
 		boolean bRet;
-		HashMap<String, String> data = new HashMap<String, String>();
+		HashMap<String, String> kdata = new HashMap<String, String>();
 
-		Transaction Trans = new Transaction("修改账户");
+		Transaction Trans = new Transaction("100092");
 
-		data.put("日期", "" + textDate.getText());
-		data.put("用户ID", textCustomerId.getText());
-		data.put("机构号", textOrganizationId.getText());
+		kdata.put("ACCTNO",textAccountId.getText());
+		kdata.put("ACDATE",textDate.getText());
+		kdata.put("CUSTID",textCustomerId.getText());
+		kdata.put("ORGID",textOrganizationId.getText());
+		kdata.put("STATE",data.get("STATE"));
+		kdata.put("PASSWD",data.get("PASSWD"));
 
 		bRet = Trans.Init();
 
@@ -108,9 +114,6 @@ public class UpdateAccountFrame extends iBankGui {
 			ShowStatusMessage(Trans.GetStatusMsg());
 			return;
 		}
-
-		String accountID = Trans.GetResponseValue("账户号");
-		textAccountId.setText(accountID);
 
 		ShowStatusMessage(Trans.GetStatusMsg());
 

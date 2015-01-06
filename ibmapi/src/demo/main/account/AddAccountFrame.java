@@ -1,8 +1,11 @@
 package demo.main.account;
 
+import gui.MD5Util;
 import ibankapi.Transaction;
 
 import java.awt.GridBagConstraints;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -66,7 +69,7 @@ public class AddAccountFrame extends iBankGui{
 		SetFont(textOrganizationId);
 		SetFont(pwd);
 		SetFont(pwdConfirm);
-		
+
 		AddInputComponent(lbDate, 0, 0, 8, 1);
 		AddInputComponent(textDate, 8, 0, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbCustomerID, 0, 1, 8, 1);
@@ -113,7 +116,7 @@ public class AddAccountFrame extends iBankGui{
 			return;
 		}
 		
-		if(!(pwd.getPassword().toString().equals(pwdConfirm.getPassword().toString()))){
+		if(!(String.copyValueOf(pwd.getPassword()).equals(String.copyValueOf(pwdConfirm.getPassword())))){
 			JOptionPane.showMessageDialog(null, "密码不一致", "错误", JOptionPane.ERROR_MESSAGE);
 			return;
 		}
@@ -121,12 +124,22 @@ public class AddAccountFrame extends iBankGui{
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
 
-		Transaction Trans = new Transaction("添加账户");
 
-		data.put("日期", "" + textDate.getText());
-		data.put("用户ID", textCustomerId.getText());
-		data.put("机构号", textOrganizationId.getText());
-		data.put("密码", pwd.getPassword().toString());
+
+
+		String ACCTNO = creatAcc(textOrganizationId.getText());
+		if(ACCTNO.equals(""))
+			return;
+
+		Transaction Trans = new Transaction("100094");
+		textAccountId.setText(ACCTNO);
+
+		data.put("STATE","1");
+		data.put("ACCTNO", ACCTNO);
+		data.put("ACDATE", textDate.getText());
+		data.put("CUSTID", textCustomerId.getText());
+		data.put("ORGID", textOrganizationId.getText());
+		data.put("PASSWD", String.copyValueOf(pwd.getPassword()));
 
 		bRet = Trans.Init();
 
@@ -140,13 +153,182 @@ public class AddAccountFrame extends iBankGui{
 			ShowStatusMessage(Trans.GetStatusMsg());
 			return;
 		}
-
-		String accountID = Trans.GetResponseValue("账户号");
-		textAccountId.setText(accountID);
-
 		ShowStatusMessage(Trans.GetStatusMsg());
 
 		Trans.Release();
+
+		creatSubAcc(ACCTNO);
+
+
+	}
+
+	private String creatAcc(String ORGID)
+	{
+		boolean bRet;
+		HashMap<String, String> data = new HashMap<String, String>();
+		Transaction Trans = new Transaction("100062");
+
+		data.put("ORGID",ORGID);
+		bRet = Trans.Init();
+		if (!bRet) {
+			return "";
+		}
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			return "";
+		}
+
+		if(!Trans.GetStatus())
+			return "";
+		String MAXACC = String.format("%08d",Integer.parseInt(Trans.GetResponseValue("MAXACC")) + 1);
+		Trans.Release();
+
+
+		Trans = new Transaction("100061");
+		data.put("MAXACC",MAXACC);
+		bRet = Trans.Init();
+		if (!bRet) {
+			return "";
+		}
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			return "";
+		}
+
+		if(!Trans.GetStatus())
+			return "";
+		Trans.Release();
+
+
+		String newAcc = ORGID + MAXACC + calc(ORGID + MAXACC);
+
+
+		Trans = new Transaction("100056");
+		data = new HashMap<String, String>();
+		data.put("CUSTID",textCustomerId.getText());
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			return "";
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			return "";
+		}
+
+		String CUSACC = Trans.GetResponseValue("CUSACC");
+		Trans.Release();
+
+
+		if(CUSACC == null ||CUSACC.isEmpty())
+		{
+			CUSACC = newAcc;
+		}
+		else
+		{
+			CUSACC = CUSACC + "," + newAcc;
+		}
+
+		Trans = new Transaction("100055");
+		data.put("CUSACC",CUSACC);
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			return "";
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			return "";
+		}
+		Trans.Release();
+
+		return newAcc;
+	}
+
+	private String calc(String a)
+	{
+		String tmp = MD5Util.getMD5String(a);
+		return String.format("%02d",Math.abs(tmp.hashCode()%100));
+	}
+
+	private void creatSubAcc(String ACCTNO)
+	{
+		boolean bRet;
+		Transaction Trans = new Transaction("100058");
+		HashMap<String,String> kdata = new HashMap<>();
+
+		kdata.put("ACCTNO",ACCTNO);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		String MAXSUB = String.format("%04d", Integer.parseInt(Trans.GetResponseValue("MAXSUB")) + 1);
+		Trans.Release();
+		System.out.println("58");
+
+
+
+		Trans = new Transaction("100090");
+
+		kdata.put("SUBID",MAXSUB);
+		kdata.put("CRDATE",new SimpleDateFormat("yyyymmdd").format(new Date()));
+		kdata.put("JISHU","000000000000");
+		kdata.put("SATYPE","1");
+		kdata.put("BALANC","000000000000");
+		kdata.put("RATE","000000000000");
+		kdata.put("EXTIME","");
+		kdata.put("OPRATE","");
+
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();
+		System.out.println("90");
+
+		Trans = new Transaction("100057");
+
+		kdata.clear();
+		kdata.put("ACCTNO",ACCTNO);
+		kdata.put("MAXSUB",MAXSUB);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();
+		System.out.println("57");
 	}
 
 }
