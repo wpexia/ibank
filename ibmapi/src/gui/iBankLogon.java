@@ -6,6 +6,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
+import ibankapi.SysConfig;
+
 public class iBankLogon extends JFrame
 {
 	private static final long serialVersionUID = 1L;
