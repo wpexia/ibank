@@ -1,5 +1,7 @@
 package demo.main.account.list.detail.edit.subdetail;
 
+import ibankapi.Transaction;
+
 import java.awt.GridBagConstraints;
 import java.util.HashMap;
 
@@ -99,5 +101,68 @@ public class ShowSubAccountDetailFrame extends iBankGui{
 
 	protected void TransactionAction(){
 		
+		String ACCTNO = data.get("ACCTNO");
+		String SUBID = data.get("SUBID");
+		String CRDATE = data.get("CRDATE");
+		String JISHU = data.get("JISHU");
+		String SATYPE = data.get("SATYPE");
+		String BALANC = data.get("BALANC");
+		String RATE = data.get("RATE");
+		String EXTIME = data.get("EXTIME");
+		String OPRATE = data.get("OPRATE");
+		boolean bRet;
+		data = new HashMap<String, String>();
+
+		Transaction Trans = new Transaction("100087");
+
+		data.put("ACCTNO",ACCTNO);
+		data.put("SUBID", SUBID);
+		data.put("CRDATE", CRDATE);
+		data.put("JISHU", JISHU);
+		data.put("SATYPE", SATYPE);
+		data.put("BALANC", "0");
+		data.put("RATE", RATE);
+		data.put("EXTIME", EXTIME);
+		data.put("OPRATE", OPRATE);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();		
+		
+		
+		data = new HashMap<String, String>();
+		Trans = new Transaction("100054");
+
+		data.put("ACCTNO",ACCTNO);
+		data.put("SUBID", "0001");
+		data.put("AMOUNT", BALANC);
+
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		Trans.Release();		
 	}
 }
