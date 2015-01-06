@@ -38,37 +38,42 @@ public class ShowOrganizationFrame extends iBankGui
 		textOrgId.setColumns(15);
 		textOrgId.addKeyListener(keyListener);
 		textOrgId.setEditable(false);
+		textOrgId.setText(data.get("ORGID"));
 
 		textCode = new JTextField();
 		textCode.setColumns(15);
 		textCode.addKeyListener(keyListener);
 		textCode.setEditable(false);
+		textCode.setText(data.get("CODE"));
 
 		textAddress = new JTextField();
 		textAddress.setColumns(15);
 		textAddress.addKeyListener(keyListener);
 		textAddress.setEditable(false);
+		textAddress.setText(data.get("ADDRES"));
 
 		textType = new JTextField();
 		textType.setColumns(15);
 		textType.addKeyListener(keyListener);
 		textType.setEditable(false);
+		textType.setText(data.get("TYPE"));
 
 
 		textAuth = new JTextField();
 		textAuth.setColumns(15);
 		textAuth.addKeyListener(keyListener);
 		textAuth.setEditable(false);
+		textAuth.setText(data.get("AUTH"));
 
 
 		textConnec = new JTextField();
 		textConnec.setColumns(15);
 		textConnec.addKeyListener(keyListener);
 		textConnec.setEditable(false);
+		textConnec.setText(data.get("CONNEC"));
 
-
-		lbTitle.setText("增加机构");
-		btnOK.setText("增加");
+		lbTitle.setText("操作机构");
+		btnOK.setText("操作");
 		btnOK.addKeyListener(keyListener);
 
 
@@ -96,8 +101,6 @@ public class ShowOrganizationFrame extends iBankGui
 	protected void TransactionAction()
 	{
 		super.TransactionAction();
-
-
 
 		dispose();
 		ModifyOrganizationMenu modifyOrganizationMenu = new ModifyOrganizationMenu(parentFrame,mdata);

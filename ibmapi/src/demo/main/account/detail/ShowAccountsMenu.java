@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import demo.main.account.list.detail.ShowAccountDetailMenu;
 import gui.iBankMenu;
+import ibankapi.Transaction;
 
 public class ShowAccountsMenu extends iBankMenu {
 	private HashMap<String, String>data;
@@ -18,7 +19,7 @@ public class ShowAccountsMenu extends iBankMenu {
 		AddMenuItem(CreateLable("客户号：   " + data.get("CUSTID")));
 		AddMenuItem(CreateLable("该用户账户信息如下"));
 		
-		for(int i = 0; i < data.size() - 1;i ++){
+		for(int i = 0; i < data.size() - 10;i ++){
 			JLabel lbAccount = CreateLable((i + 1) + " : " + data.get(i + ""));
 			AddMenuItem(lbAccount);
 		}
@@ -35,15 +36,34 @@ public class ShowAccountsMenu extends iBankMenu {
 			returnMain();
 		}
 		else {
+			boolean bRet;
 			HashMap<String, String>mapDetail = new HashMap<String, String>();
-			mapDetail.put("CUSTID", data.get("CUSTID"));
-/*****************这部分是自己编的数据**************/
-			mapDetail.put("ACCTNO", "A123001");
-			mapDetail.put("ACDATE", "20141228");
-			mapDetail.put("ORGID", "000003");
-			mapDetail.put("STATE", "0");
-			mapDetail.put("PASSWD", "123456");
-/********************************************/
+			Transaction Trans = new Transaction("100091");
+
+			mapDetail.put("ACCTNO",data.get(Integer.toString(Integer.parseInt(menuItem)-1)));
+
+			bRet = Trans.Init();
+
+			if (!bRet) {
+				return;
+			}
+
+			bRet = Trans.SendMessage(mapDetail);
+			if(!bRet){
+				return;
+			}
+
+			if(!Trans.GetStatus())
+				return;
+
+
+			String[] tmp = {"CUSTID", "ACDATE", "ORGID", "STATE", "PASSWD"};
+			for(String x : tmp)
+			{
+				mapDetail.put(x, Trans.GetResponseValue(x));
+			}
+			Trans.Release();
+
 			ShowAccountDetailMenu showAccountDetail = new ShowAccountDetailMenu(this, mapDetail);
 			OpenMenuWindow(showAccountDetail);
 		}

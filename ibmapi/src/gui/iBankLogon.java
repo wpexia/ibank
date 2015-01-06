@@ -12,8 +12,10 @@ public class iBankLogon extends JFrame
 
 	protected JPanel contentPane;
 	
+	protected JLabel         lbOrganization;
 	protected JLabel         lbUser;  
 	protected JLabel         lbPass;
+	protected JTextField     textOrgID; 
 	protected JTextField     username;
 	protected JPasswordField password;
 	protected JButton        btnLogin; 
@@ -43,9 +45,12 @@ public class iBankLogon extends JFrame
 		
 		contentPane.setLayout(gblInput);
 		
+		lbOrganization = new JLabel("机构号：");
 		lbUser   = new JLabel("用户名：");
 		lbPass   = new JLabel("口令：");
 		
+		textOrgID    = new JTextField();
+		textOrgID.setColumns(8);
 		username = new JTextField();
 		username.setColumns(8);
 		password = new JPasswordField();
@@ -54,13 +59,14 @@ public class iBankLogon extends JFrame
 		btnLogin  = new JButton("登录");
 		btnClose  = new JButton("退出");
 		
-
-		AddComponent(contentPane, lbUser,      gbcInput, 0,  0, 3, 1);
-		AddComponent(contentPane, username,    gbcInput, 4,  0, GridBagConstraints.REMAINDER, 1);
-		AddComponent(contentPane, lbPass,      gbcInput, 0,  1, 3, 1);
-		AddComponent(contentPane, password,    gbcInput, 4,  1, GridBagConstraints.REMAINDER, 1);
-		AddComponent(contentPane, btnLogin,    gbcInput, 0,  2, 3, 1);
-		AddComponent(contentPane, btnClose,    gbcInput, 4,  2, GridBagConstraints.REMAINDER, 1);
+		AddComponent(contentPane, lbOrganization, gbcInput, 0, 0, 3, 1);
+		AddComponent(contentPane, textOrgID,       gbcInput, 4, 0, GridBagConstraints.REMAINDER, 1);
+		AddComponent(contentPane, lbUser,      gbcInput, 0,  1, 3, 1);
+		AddComponent(contentPane, username,    gbcInput, 4,  1, GridBagConstraints.REMAINDER, 1);
+		AddComponent(contentPane, lbPass,      gbcInput, 0,  2, 3, 1);
+		AddComponent(contentPane, password,    gbcInput, 4,  2, GridBagConstraints.REMAINDER, 1);
+		AddComponent(contentPane, btnLogin,    gbcInput, 0,  3, 3, 1);
+		AddComponent(contentPane, btnClose,    gbcInput, 4,  3, GridBagConstraints.REMAINDER, 1);
 		
 		
 		btnLogin.addActionListener( new ActionListener()

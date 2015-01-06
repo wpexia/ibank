@@ -3,12 +3,10 @@ package demo.main.account.list.detail.edit;
 import java.awt.GridBagConstraints;
 import java.util.HashMap;
 
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
+import javax.swing.*;
 
 import gui.iBankGui;
+import ibankapi.Transaction;
 
 public class UpdateAccPwd extends iBankGui {
 
@@ -55,4 +53,58 @@ public class UpdateAccPwd extends iBankGui {
 		
 	}
 
+	protected void TransactionAction()
+	{
+		super.TransactionAction();
+
+		if (String.copyValueOf(pswdOldPwd.getPassword()).isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入旧密码", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (String.copyValueOf(pswdOldPwd.getPassword()).equals(data.get("PASSWD"))) {
+			JOptionPane.showMessageDialog(null, "旧密码错误", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (String.copyValueOf(pswdNewPwd.getPassword()).isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请输入新密码", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		if (String.copyValueOf(pswdNewPwdConf.getPassword()).isEmpty()) {
+			JOptionPane.showMessageDialog(null, "请确认新密码", "错误", JOptionPane.ERROR_MESSAGE);
+			return;
+		}
+
+		boolean bRet;
+		HashMap<String, String> kdata = new HashMap<String, String>();
+
+
+		Transaction Trans = new Transaction("100092");
+
+		kdata.put("ACCTNO", data.get("ACCTNO"));
+		kdata.put("ACDATE", data.get("ACDATE"));
+		kdata.put("CUSTID", data.get("CUSTID"));
+		kdata.put("ORGID", data.get("ORGID"));
+		kdata.put("STATE",data.get("STATE"));
+		kdata.put("PASSWD",String.copyValueOf(pswdNewPwd.getPassword()));
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		Trans.Release();
+	}
 }

@@ -3,6 +3,7 @@ package demo.main.organization;
 
 import demo.main.organization.menu.ShowOrganizationFrame;
 import gui.iBankGui;
+import ibankapi.Transaction;
 
 import javax.swing.*;
 import java.awt.*;
@@ -42,8 +43,38 @@ public class QueryOrganizationFrame extends iBankGui
 			return;
 		}
 
+		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
 
+		Transaction Trans = new Transaction("100070");
+
+		data.put("ORGID",textOrgId.getText());
+
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+
+		if(!Trans.GetStatus())
+			return;
+
+		String[] tmp={"ORGID","CODE","ADDRES","TYPE","AUTH","CONNEC"};
+		for(String x : tmp)
+		{
+			data.put(x, Trans.GetResponseValue(x));
+		}
+
+		Trans.Release();
 
 		ShowOrganizationFrame showOrganizationFrame = new ShowOrganizationFrame(this,data);
 		OpenTransWindow(showOrganizationFrame);
