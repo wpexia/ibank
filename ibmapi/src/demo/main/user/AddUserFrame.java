@@ -167,7 +167,7 @@ public final class AddUserFrame extends iBankGui {
 
 	public String getAge(String birth)
 	{
-		DateFormat format = new SimpleDateFormat("YYYYDD");
+		DateFormat format = new SimpleDateFormat("YYYYMM");
 		try
 		{
 			Date birthDay = format.parse(birth);

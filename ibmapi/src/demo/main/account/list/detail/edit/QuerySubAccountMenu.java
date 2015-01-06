@@ -25,7 +25,7 @@ public class QuerySubAccountMenu extends iBankMenu
 		AddMenuItem(CreateLable("账户号：  " + data.get("ACCTNO")));
 		AddMenuItem(CreateLable("该账户的子账户信息如下"));
 
-		for (int i = 1; i <= data.size() - 6; i++)
+		for (int i = 1; i <= Integer.parseInt(data.get("num")); i++)
 		{
 			JLabel lbAccount = CreateLable((i) + " : " + data.get(Integer.toString(i)));
 			AddMenuItem(lbAccount);
@@ -65,11 +65,12 @@ public class QuerySubAccountMenu extends iBankMenu
 				return;
 			}
 
-			String[] tmp = {"SUBID", "CRDATE", "JISHU", "SATYPE", "BALANCE", "RATE", "EXTIME", "OPRATE"};
+			String[] tmp = {"SUBID", "CRDATE", "JISHU", "SATYPE", "BALANC", "RATE", "EXTIME", "OPRATE"};
 
 			for (String x : tmp)
 			{
 				mapDetail.put(x, Trans.GetResponseValue(x));
+				System.out.println(x + "   " + Trans.GetResponseValue(x));
 			}
 
 			ShowSubAccountDetailFrame showSubAccountDetail = new ShowSubAccountDetailFrame(this, mapDetail);

@@ -41,7 +41,7 @@ public class ShowSubAccountDetailFrame extends iBankGui{
 		JLabel lbOprate = CreateLable("到期操作");
 		
 		textAccountId = setText(textAccountId, "ACCTNO");
-		textBalance = setText(textBalance, "BALANCE");
+		textBalance = setText(textBalance, "BALANC");
 		textDate = setText(textDate, "CRDATE");
 		textExDate = setText(textExDate, "EXTIME");
 		textJiShu = setText(textJiShu, "JISHU");
