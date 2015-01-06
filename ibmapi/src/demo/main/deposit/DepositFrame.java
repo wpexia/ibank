@@ -18,6 +18,7 @@ public class DepositFrame extends  iBankGui{
 	private static final long serialVersionUID = 1L;
 	private JTextField textAccountNo ;
 	private JComboBox<String>cbType;
+	private JComboBox<String>cbTime;
 	private JTextField textAmount;
 	
 	private JTextField textBalance;
@@ -28,6 +29,7 @@ public class DepositFrame extends  iBankGui{
 		JLabel lbType = CreateLable("存款类型");
 		JLabel lbAmount = CreateLable("存款金额￥");
 		JLabel lbBalance = CreateLable("余额");
+		JLabel lbTime = CreateLable("存款期限");
 		
 		textAccountNo = new JTextField();
 		textAccountNo.setColumns(15);
@@ -37,6 +39,13 @@ public class DepositFrame extends  iBankGui{
 		cbType = new JComboBox<String>();
 		for(int i = 0; i < strType.length;i ++){
 			cbType.addItem(strType[i]);
+		}
+		cbType.addKeyListener(keyListener);
+		
+		String[] strTime = {"活期（空）","三个月", "六个月", "一年", "二年", "三年", "五年"};
+		cbTime = new JComboBox<String>();
+		for (int i = 0; i < strTime.length; i++) {
+			cbTime.addItem(strTime[i]);
 		}
 		cbType.addKeyListener(keyListener);
 		
@@ -64,7 +73,10 @@ public class DepositFrame extends  iBankGui{
 		AddInputComponent(cbType, 8, 1, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbAmount, 0, 2, 8, 1);
 		AddInputComponent(textAmount, 8, 2, GridBagConstraints.RELATIVE, 1);
-		AddInputComponent(btnOK, 0, 3, 8, 1);
+		AddInputComponent(lbTime, 0, 3, 8, 1);
+		AddInputComponent(cbTime, 8, 3, GridBagConstraints.RELATIVE, 1);
+		AddInputComponent(btnOK, 0, 4, 8, 1);
+		
 		
 		AddOutputComponent(lbBalance, 0, 0, 8, 1);
 		AddOutputComponent(textBalance, 8, 0, GridBagConstraints.RELATIVE, 1);

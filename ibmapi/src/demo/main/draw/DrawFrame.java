@@ -74,6 +74,7 @@ public class DrawFrame extends iBankGui{
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
 		
+
 		if(true){
 			//JOptionPane.showMessageDialog(null, "活期余额不足，需从定期账户转", "错误", JOptionPane.ERROR_MESSAGE);
 			//根据账户号找子账户列表，存到一个map里

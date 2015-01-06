@@ -185,6 +185,7 @@ public class AddOperatorFrame extends iBankGui
 		Trans.Release();
 
 		textOperatorId.setText(MAXOPR);
+
 	}
 
 }
