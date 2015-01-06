@@ -4,6 +4,8 @@ import gui.MD5Util;
 import ibankapi.Transaction;
 
 import java.awt.GridBagConstraints;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 
 import javax.swing.JFrame;
@@ -155,6 +157,7 @@ public class AddAccountFrame extends iBankGui{
 
 		Trans.Release();
 
+		creatSubAcc(ACCTNO);
 
 
 	}
@@ -248,6 +251,84 @@ public class AddAccountFrame extends iBankGui{
 	{
 		String tmp = MD5Util.getMD5String(a);
 		return String.format("%02d",Math.abs(tmp.hashCode()%100));
+	}
+
+	private void creatSubAcc(String ACCTNO)
+	{
+		boolean bRet;
+		Transaction Trans = new Transaction("100058");
+		HashMap<String,String> kdata = new HashMap<>();
+
+		kdata.put("ACCTNO",ACCTNO);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		String MAXSUB = String.format("%04d", Integer.parseInt(Trans.GetResponseValue("MAXSUB")) + 1);
+		Trans.Release();
+		System.out.println("58");
+
+
+
+		Trans = new Transaction("100090");
+
+		kdata.put("SUBID",MAXSUB);
+		kdata.put("CRDATE",new SimpleDateFormat("yyyymmdd").format(new Date()));
+		kdata.put("JISHU","000000000000");
+		kdata.put("SATYPE","1");
+		kdata.put("BALANC","000000000000");
+		kdata.put("RATE","000000000000");
+		kdata.put("EXTIME","");
+		kdata.put("OPRATE","");
+
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();
+		System.out.println("90");
+
+		Trans = new Transaction("100057");
+
+		kdata.clear();
+		kdata.put("ACCTNO",ACCTNO);
+		kdata.put("MAXSUB",MAXSUB);
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(kdata);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+		ShowStatusMessage(Trans.GetStatusMsg());
+		Trans.Release();
+		System.out.println("57");
 	}
 
 }

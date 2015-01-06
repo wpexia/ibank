@@ -76,7 +76,6 @@ public class QueryAccountFrame extends iBankGui{
 		for(String x : tmp)
 		{
 			data.put(x, Trans.GetResponseValue(x));
-			System.out.println(x);
 		}
 		Trans.Release();
 

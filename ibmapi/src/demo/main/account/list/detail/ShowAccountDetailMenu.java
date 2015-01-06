@@ -109,11 +109,10 @@ public class ShowAccountDetailMenu extends iBankMenu {
 		int MAXSUB = Integer.parseInt(Trans.GetResponseValue("MAXSUB"));
 		Trans.Release();
 
-
-		for (int i=0; i< MAXSUB;i++)
+		for (int i=1; i<= MAXSUB;i++)
 		{
 			Trans = new Transaction("100088");
-			mapDetail.put("SUBID",Integer.toString(i));
+			mapDetail.put("SUBID",String.format("%04d",i));
 			bRet = Trans.Init();
 
 			if (!bRet) {
@@ -129,7 +128,6 @@ public class ShowAccountDetailMenu extends iBankMenu {
 				continue;
 
 			data.put(Integer.toString(i),Trans.GetResponseValue("SUBID"));
-
 		}
 	}
 	

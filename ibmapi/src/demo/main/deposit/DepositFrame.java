@@ -33,7 +33,7 @@ public class DepositFrame extends  iBankGui{
 		textAccountNo.setColumns(15);
 		textAccountNo.addKeyListener(keyListener);
 		
-		String[] strType = {"定期", "活期"};
+		String[] strType = {"活期","定期"};
 		cbType = new JComboBox<String>();
 		for(int i = 0; i < strType.length;i ++){
 			cbType.addItem(strType[i]);
@@ -86,7 +86,34 @@ public class DepositFrame extends  iBankGui{
 
 		boolean bRet;
 		HashMap<String, String> data = new HashMap<String, String>();
-//		Transaction Trans = new Transaction("100099");
+		Transaction Trans = new Transaction("100054");
+
+		data.put("ACCTNO",textAccountNo.getText());
+		data.put("SUBID","0001");
+		data.put("MOUNT", String.format("%012.0lf", Double.parseDouble(textAmount.getText()) * 1000));
+
+		bRet = Trans.Init();
+
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		bRet = Trans.SendMessage(data);
+		if (!bRet) {
+			ShowStatusMessage(Trans.GetStatusMsg());
+			return;
+		}
+
+		
+
+		
+
+
+
+
+
+
 //
 //		data.put("IDTYPE", "" + (char) ('A' + comboIdType.getSelectedIndex()));
 //		data.put("IDNO", textIdNumber.getText());
