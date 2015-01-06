@@ -163,6 +163,6 @@ public class ShowSubAccountDetailFrame extends iBankGui{
 		}
 		ShowStatusMessage(Trans.GetStatusMsg());
 
-		Trans.Release();		
+		Trans.Release();
 	}
 }
