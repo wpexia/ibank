@@ -1,6 +1,7 @@
 package demo.main.account;
 
 import gui.MD5Util;
+import ibankapi.SysConfig;
 import ibankapi.Transaction;
 
 import java.awt.GridBagConstraints;
@@ -72,6 +73,7 @@ public class AddAccountFrame extends iBankGui{
 
 		AddInputComponent(lbDate, 0, 0, 8, 1);
 		AddInputComponent(textDate, 8, 0, GridBagConstraints.RELATIVE, 1);
+		textDate.setText(SysConfig.GetServerDate());
 		AddInputComponent(lbCustomerID, 0, 1, 8, 1);
 		AddInputComponent(textCustomerId, 8, 1, GridBagConstraints.RELATIVE, 1);
 		AddInputComponent(lbOrgId, 0, 2, 8, 1);
